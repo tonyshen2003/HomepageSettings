@@ -55,10 +55,6 @@
         - icon: si-google-#4285F4
           href: https://www.google.com/
           description: 谷歌搜索
-    - Bing:
-        - icon: si-microsoftbing-#0078D4
-          href: https://www.bing.com
-          description: 必应搜索
     - Baidu:
         - icon: si-baidu-#2932E1
           href: https://www.baidu.com
@@ -68,7 +64,7 @@
     - ChatGPT:
         - icon: si-openai-#412991
           href: https://chat.openai.com
-          description: OpenAI 的对话 AI 助手
+          description: OpenAI 对话助手
     - Claude:
         - icon: si-anthropic-#CC785C
           href: https://claude.ai/chat
@@ -247,10 +243,6 @@
         - icon: si-edx-#02262B
           href: https://www.edx.org
           description: 免费在线课程
-    - 中国大学MOOC:
-        - icon: mdi-school-#1976D2
-          href: https://www.icourse163.org
-          description: 中文慕课平台
 
 - 设计资源:
     - Dribbble:
@@ -298,7 +290,7 @@
     - 爱奇艺:
         - icon: mdi-television-play-#00BE06
           href: https://www.iqiyi.com
-          description: 中国视频网站
+          description: 视频播放平台
     - 腾讯视频:
         - icon: si-tencentqq-#12B7F5
           href: https://v.qq.com
@@ -325,22 +317,10 @@
         - icon: mdi-adobe-#FF0000
           href: https://www.adobe.com/creativecloud.html
           description: Adobe 创意套件
-    - Premiere Pro:
-        - icon: si-adobepremierepro-#9999FF
-          href: https://www.adobe.com/products/premiere.html
-          description: 专业视频编辑软件
-    - After Effects:
-        - icon: si-adobeaftereffects-#9999FF
-          href: https://www.adobe.com/products/aftereffects.html
-          description: 动态图形和视觉效果
     - DaVinci Resolve:
         - icon: si-davinciresolve-#233A51
           href: https://www.blackmagicdesign.com/products/davinciresolve
           description: 专业调色和剪辑软件
-    - Final Cut Pro:
-        - icon: mdi-movie-edit-outline-#1A1A1A
-          href: https://www.apple.com/final-cut-pro
-          description: 苹果专业视频编辑
     - Blender:
         - icon: si-blender-#F5792A
           href: https://www.blender.org

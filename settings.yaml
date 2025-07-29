@@ -2,68 +2,105 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/latest/configs/settings
 
+# API提供商配置
 providers:
   openweathermap: openweathermapapikey
   weatherapi: weatherapiapikey
   finnhub: d248crhr01qmb5913ipgd248crhr01qmb5913iq0
 
+# 基础配置
 language: zh-CN
-
 title: 沈孙丰个人主页
+description: 沈孙丰的个人主页 - 集成常用服务、AI工具和系统监控
+startUrl: /
 
+# 图标配置
 favicon: https://www.baidu.com/favicon.ico
 
-# 现代化主题配置
+# 主题配置
 theme: dark
 color: slate
+iconStyle: theme
 
-# 背景配置 - 使用现代渐变背景
+# 背景配置 - 优化的现代渐变背景
 background:
   image: https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=2560&q=80
   blur: md
-  saturate: 80
-  brightness: 40
-  opacity: 85
+  saturate: 75
+  brightness: 45
+  opacity: 80
 
 # 卡片样式配置
-cardBlur: sm
-iconStyle: flat
+cardBlur: xs
 
-# 布局配置
+# 布局配置 - 与 services.yaml 中的实际分组对应
 layout:
-  常用网站:
+  常用服务:
+    style: row
+    columns: 6
+    icon: mdi-star
+    header: true
+  社交媒体:
+    style: row
+    columns: 2
+    icon: mdi-account-group
+    header: true
+  树莓社:
     style: row
     columns: 4
-    icon: mdi-web
-  AI工具:
+    icon: mdi-raspberry-pi
+    header: true
+  国际AI服务:
     style: row
-    columns: 5
+    columns: 2
     icon: mdi-robot
-  开发工具:
+    header: true
+  国内AI服务:
     style: row
     columns: 4
-    icon: mdi-code-tags
-  云服务:
-    style: row
-    columns: 4
-    icon: mdi-cloud
-  在线学习:
-    style: row
-    columns: 4
-    icon: mdi-school
-  设计资源:
-    style: row
-    columns: 4
-    icon: mdi-palette
-  娱乐休闲:
-    style: row
-    columns: 4
-    icon: mdi-gamepad-variant
-  影视制作:
-    style: row
-    columns: 5
-    icon: mdi-movie-edit
-  系统工具:
+    icon: mdi-brain
+    header: true
+  办公协作:
     style: row
     columns: 3
-    icon: mdi-tools
+    icon: mdi-office-building
+    header: true
+  系统监控:
+    style: row
+    columns: 2
+    icon: mdi-monitor-dashboard
+    header: true
+
+# 书签样式配置
+bookmarksStyle: icons
+
+# 高级配置选项
+# 禁用搜索引擎（如果不需要）
+# disableCollapse: false
+
+# 自定义CSS和JS（如果需要）
+# customCSS: /custom.css
+# customJS: /custom.js
+
+# 页面刷新间隔（毫秒）
+# refreshInterval: 30000
+
+# 隐藏版本信息
+# hideVersion: false
+
+# 启用键盘快捷键
+# useEqualHeights: false
+
+# 自定义字体
+# fonts:
+#   header: "Inter"
+#   body: "Inter"
+
+# 自定义头部
+# headerStyle: clean
+
+# 快速启动配置
+# quicklaunch:
+#   searchDescriptions: true
+#   hideInternetSearch: false
+#   hideVisitURL: false

@@ -303,3 +303,113 @@ h1, h2, h3 {
 .service-card, .bookmark-card {
   contain: layout style paint;
 }
+
+/* 鼠标粒子效果增强样式 */
+body {
+  cursor: none;
+}
+
+/* 确保粒子效果显示在正确层级 */
+canvas[style*="z-index: 9999"] {
+  z-index: 9999 !important;
+  pointer-events: none !important;
+  position: fixed !important;
+}
+
+/* 确保主要内容区域有正确的层级 */
+#__next {
+  position: relative;
+  z-index: 1;
+}
+
+/* 确保背景图片在最底层 */
+body::before {
+  z-index: -1;
+}
+
+/* 自定义光标 */
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.4) 70%, transparent 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: screen;
+  transition: transform 0.1s ease;
+}
+
+/* 页面加载动画 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-card, .bookmark-card {
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: calc(var(--animation-order, 0) * 0.1s);
+}
+
+/* 增强的悬停效果 */
+.service-card:hover, .bookmark-card:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* 渐变边框动画 */
+@keyframes borderGlow {
+  0%, 100% {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    border-color: rgba(102, 126, 234, 0.6);
+  }
+}
+
+.service-card:hover, .bookmark-card:hover {
+  animation: borderGlow 2s ease-in-out infinite;
+}
+
+/* 背景粒子容器 - 移除z-index以避免与canvas冲突 */
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* 增强的文字效果 */
+.service-name:hover, .bookmark-name:hover {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+  .custom-cursor {
+    display: none;
+  }
+  
+  body {
+    cursor: auto;
+  }
+  
+  .service-card, .bookmark-card {
+    transform: none !important;
+  }
+  
+  .service-card:hover, .bookmark-card:hover {
+    transform: translateY(-4px) !important;
+  }
+}

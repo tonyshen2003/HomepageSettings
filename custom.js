@@ -16,6 +16,8 @@
         addKeyboardShortcuts();
         addPerformanceOptimizations();
         addAccessibilityFeatures();
+        initMouseParticles();
+        initCustomCursor();
     }
     
     // 视差滚动效果
@@ -321,11 +323,179 @@
         }
     }
     
-    // 初始化主题切换
+    // 鼠标粒子效果
+    function initMouseParticles() {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // 设置画布样式
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.pointerEvents = 'none';
+        canvas.style.zIndex = '9999';
+        canvas.style.mixBlendMode = 'screen';
+        canvas.style.opacity = '0.8';
+        
+        // 调试信息
+        console.log('粒子 canvas 已创建，z-index:', canvas.style.zIndex);
+        
+        document.body.appendChild(canvas);
+        
+        // 调整画布大小
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // 粒子数组
+        const particles = [];
+        const maxParticles = 50;
+        
+        // 鼠标位置
+        let mouse = { x: 0, y: 0 };
+        
+        // 粒子类
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.life = 1;
+                this.decay = Math.random() * 0.02 + 0.01;
+                this.size = Math.random() * 3 + 1;
+                this.color = `hsl(${Math.random() * 60 + 200}, 70%, 60%)`;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.life -= this.decay;
+                this.vx *= 0.99;
+                this.vy *= 0.99;
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.life;
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+        
+        // 创建粒子
+        function createParticle(x, y) {
+            if (particles.length < maxParticles) {
+                particles.push(new Particle(x, y));
+            }
+        }
+        
+        // 动画循环
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 更新和绘制粒子
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const particle = particles[i];
+                particle.update();
+                particle.draw();
+                
+                // 移除死亡的粒子
+                if (particle.life <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+        
+        // 鼠标移动事件
+        document.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+            
+            // 创建粒子（降低频率以提高性能）
+            if (Math.random() < 0.3) {
+                createParticle(mouse.x, mouse.y);
+            }
+        });
+        
+        // 开始动画
+         animate();
+     }
+     
+     // 自定义光标效果
+     function initCustomCursor() {
+         // 检查是否为移动设备
+         if (window.innerWidth <= 768) {
+             return;
+         }
+         
+         const cursor = document.createElement('div');
+         cursor.className = 'custom-cursor';
+         document.body.appendChild(cursor);
+         
+         let mouseX = 0;
+         let mouseY = 0;
+         let cursorX = 0;
+         let cursorY = 0;
+         
+         // 鼠标移动事件
+         document.addEventListener('mousemove', (e) => {
+             mouseX = e.clientX;
+             mouseY = e.clientY;
+         });
+         
+         // 平滑跟随动画
+         function animateCursor() {
+             const dx = mouseX - cursorX;
+             const dy = mouseY - cursorY;
+             
+             cursorX += dx * 0.1;
+             cursorY += dy * 0.1;
+             
+             cursor.style.left = cursorX - 10 + 'px';
+             cursor.style.top = cursorY - 10 + 'px';
+             
+             requestAnimationFrame(animateCursor);
+         }
+         
+         animateCursor();
+         
+         // 悬停效果
+         const interactiveElements = document.querySelectorAll('a, button, .service-card, .bookmark-card, [role="button"]');
+         
+         interactiveElements.forEach(element => {
+             element.addEventListener('mouseenter', () => {
+                 cursor.style.transform = 'scale(1.5)';
+                 cursor.style.background = 'radial-gradient(circle, rgba(240, 147, 251, 0.8) 0%, rgba(245, 87, 108, 0.4) 70%, transparent 100%)';
+             });
+             
+             element.addEventListener('mouseleave', () => {
+                 cursor.style.transform = 'scale(1)';
+                 cursor.style.background = 'radial-gradient(circle, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.4) 70%, transparent 100%)';
+             });
+         });
+     }
+     
+     // 初始化主题切换
     addThemeTransition();
     
     // 控制台欢迎信息
-    console.log('%c🎉 沈孙丰个人主页已加载完成！', 'color: #667eea; font-size: 16px; font-weight: bold;');
-    console.log('%c✨ 现代化美化效果已启用', 'color: #4facfe; font-size: 14px;');
+    console.log('%c沈孙丰个人主页已加载完成', 'color: #667eea; font-size: 16px; font-weight: bold;');
+     console.log('%c现代化美化效果已启用', 'color: #4facfe; font-size: 14px;');
+     console.log('%c鼠标粒子效果已激活', 'color: #f093fb; font-size: 14px;');
+     console.log('%c自定义光标效果已启用', 'color: #764ba2; font-size: 14px;');
     
 })();

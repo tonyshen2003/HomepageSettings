@@ -2,22 +2,57 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/latest/configs/services
 
-- 媒体影音:
+- 常用服务:
+    - 支付宝:
+        icon: mdi-alpha-a-box-#1677FF
+        href: https://www.alipay.com
+        description: 蚂蚁集团支付平台
+        ping: https://www.alipay.com
+        siteMonitor: https://www.alipay.com
+    - 知乎:
+        icon: mdi-alpha-z-box-#0084FF
+        href: https://www.zhihu.com
+        description: 中文问答社区
+        ping: https://www.zhihu.com
+        siteMonitor: https://www.zhihu.com
+    - 微博:
+        icon: mdi-sina-weibo-#E6162D
+        href: https://weibo.com
+        description: 新浪微博社交平台
+        ping: https://weibo.com
+        siteMonitor: https://weibo.com
     - Bilibili:
         icon: si-bilibili-#00A1D6
         href: https://www.bilibili.com
         description: 哔哩哔哩弹幕视频网站，国内知名的视频分享平台
         ping: https://www.bilibili.com
+        siteMonitor: https://www.bilibili.com
     - YouTube:
         icon: si-youtube-#FF0000
         href: https://www.youtube.com
         description: 全球最大的视频分享平台
         ping: https://www.youtube.com
+        siteMonitor: https://www.youtube.com
     - Netflix:
         icon: si-netflix-#E50914
         href: https://www.netflix.com
         description: 全球领先的流媒体娱乐服务
         ping: https://www.netflix.com
+        siteMonitor: https://www.netflix.com
+
+- 社交媒体:
+    - 抖音:
+        icon: mdi-music-note-#FE2C55
+        href: https://www.douyin.com
+        description: 字节跳动短视频平台
+        ping: https://www.douyin.com
+        siteMonitor: https://www.douyin.com
+    - 小红书:
+        icon: mdi-book-open-variant-#FF2442
+        href: https://www.xiaohongshu.com
+        description: 生活方式分享平台
+        ping: https://www.xiaohongshu.com
+        siteMonitor: https://www.xiaohongshu.com
 
 - 树莓社:
     - 苏州中学树莓社官网:
@@ -30,15 +65,118 @@
         href: https://docs.szzxshumei.com
         description: 数字媒体技术文档和创作交流平台
         ping: https://docs.szzxshumei.com
+    - 树莓社飞书云协作平台:
+        icon: mdi-lark-#00D6B9
+        href: https://szzxshumei.feishu.cn/drive/home/
+        description: 树莓社团队协作与文档管理平台
+        ping: https://szzxshumei.feishu.cn
+    - 树莓社社团网盘:
+        icon: mdi-cloud-outline-#4285F4
+        href: https://webdrive.szzxshumei.com/
+        description: 树莓云盘 - 所有资料，汇集一处
+        ping: https://webdrive.szzxshumei.com
 
-- AI服务:
+- 国际AI服务:
     - ChatGPT:
         icon: openai-light
         href: https://chat.openai.com
         description: OpenAI 的对话 AI 助手服务
         ping: https://chat.openai.com
+        siteMonitor: https://chat.openai.com
     - Claude:
         icon: si-claude-#D97757
         href: https://claude.ai
         description: Anthropic 的 AI 助手服务
         ping: https://claude.ai
+        siteMonitor: https://claude.ai
+
+- 国内AI服务:
+    - 通义千问:
+        icon: si-alibabacloud-#FF6A00
+        href: https://chat.qwen.ai/
+        description: 阿里云大语言模型
+        ping: https://tongyi.aliyun.com
+        siteMonitor: https://tongyi.aliyun.com
+    - 文心一言:
+        icon: si-baidu-#2932E1
+        href: https://yiyan.baidu.com
+        description: 百度 AI 对话助手
+        ping: https://yiyan.baidu.com
+        siteMonitor: https://yiyan.baidu.com
+    - Kimi:
+        icon: mdi-robot-outline-#4285F4
+        href: https://kimi.moonshot.cn
+        description: 月之暗面 AI 助手
+        ping: https://kimi.moonshot.cn
+        siteMonitor: https://kimi.moonshot.cn
+    - 豆包:
+        icon: mdi-package-variant-#1677FF
+        href: https://www.doubao.com
+        description: 字节跳动 AI 助手
+        ping: https://www.doubao.com
+        siteMonitor: https://www.doubao.com
+    - 智谱清言:
+        icon: mdi-brain-#00C853
+        href: https://chatglm.cn
+        description: 智谱 AI 对话助手
+        ping: https://chatglm.cn
+        siteMonitor: https://chatglm.cn
+    - MiniMax:
+        icon: mdi-alpha-m-box-#FF5722
+        href: https://www.minimaxi.com
+        description: MiniMax AI 助手
+        ping: https://www.minimaxi.com
+        siteMonitor: https://www.minimaxi.com
+    - 讯飞星火:
+        icon: mdi-star-outline-#FF9800
+        href: https://xinghuo.xfyun.cn
+        description: 科大讯飞 AI 助手
+        ping: https://xinghuo.xfyun.cn
+        siteMonitor: https://xinghuo.xfyun.cn
+    - 腾讯混元:
+        icon: si-tencentqq-#12B7F5
+        href: https://hunyuan.tencent.com
+        description: 腾讯混元 AI 助手
+        ping: https://hunyuan.tencent.com
+        siteMonitor: https://hunyuan.tencent.com
+
+- 办公协作:
+    - 腾讯文档:
+        icon: mdi-file-document-multiple-#00A4FF
+        href: https://docs.qq.com
+        description: 在线文档协作
+        ping: https://docs.qq.com
+        siteMonitor: https://docs.qq.com
+    - 飞书:
+        icon: mdi-lark-#00D6B9
+        href: https://www.feishu.cn
+        description: 字节跳动办公套件
+        ping: https://www.feishu.cn
+        siteMonitor: https://www.feishu.cn
+    - 石墨文档:
+        icon: mdi-file-document-edit-#00BCD4
+        href: https://shimo.im
+        description: 在线协作文档
+        ping: https://shimo.im
+        siteMonitor: https://shimo.im
+
+- 系统监控:
+    - Homepage状态:
+        icon: mdi-monitor-dashboard-#4CAF50
+        href: http://localhost:3000
+        description: Homepage仪表板状态监控
+        ping: localhost
+        widget:
+          type: customapi
+          url: http://localhost:3000/api/ping
+          refreshInterval: 30000
+          mappings:
+            - label: 状态
+              field: status
+              format: text
+    - 网络连接测试:
+        icon: mdi-network-outline-#2196F3
+        href: https://www.google.com
+        description: 外网连接状态检测
+        ping: 8.8.8.8
+        siteMonitor: https://www.google.com
