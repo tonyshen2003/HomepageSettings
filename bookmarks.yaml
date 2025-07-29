@@ -3,40 +3,419 @@
 # https://gethomepage.dev/latest/configs/bookmarks
 
 - 常用网站:
-    - 爱折腾的老高微博:
-        - icon: /icons/dff.png
-          href: https://diyforfun.cn/
-    - Qbittorrent:
-        - icon: qbittorrent.png
-          href: http://192.168.140.113:26980/
-    - LibreSpeed:
-        - icon: http://192.168.8.8/favicon.ico
-          href: http://192.168.8.8/
     - Github:
         - icon: github-light.svg
           href: https://github.com/
-
-- 搜索引擎:
+          description: 全球最大的代码托管平台
+    - Stack Overflow:
+        - icon: https://stackoverflow.com/favicon.ico
+          href: https://stackoverflow.com/
+          description: 程序员问答社区
+    - 掘金:
+        - icon: https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/static/favicons/favicon-32x32.png
+          href: https://juejin.cn/
+          description: 技术分享社区
+    - CSDN:
+        - icon: https://g.csdnimg.cn/static/logo/favicon32.ico
+          href: https://www.csdn.net/
+          description: 中文技术社区
+    - Gmail:
+        - icon: https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico
+          href: https://accounts.google.com/b/0/AddMailService
+          description: Google邮箱服务
+    - Google Maps:
+        - icon: https://maps.google.com/favicon.ico
+          href: https://maps.google.com/
+          description: 谷歌地图服务
+    - Google Translate:
+        - icon: https://translate.google.com/favicon.ico
+          href: https://translate.google.com/
+          description: 谷歌翻译
+    - 哔哩哔哩:
+        - icon: https://www.bilibili.com/favicon.ico
+          href: https://www.bilibili.com/
+          description: 弹幕视频网站
+    - Outlook:
+        - icon: https://outlook.live.com/favicon.ico
+          href: https://outlook.live.com/mail/0/
+          description: 微软邮箱服务
+    - iCloud:
+        - icon: https://www.icloud.com/favicon.ico
+          href: https://www.icloud.com.cn/iclouddrive/
+          description: 苹果云存储
+    - Canva:
+        - icon: https://www.canva.com/favicon.ico
+          href: https://www.canva.com/
+          description: 在线设计工具
+    - Cloudflare:
+        - icon: https://dash.cloudflare.com/favicon.ico
+          href: https://dash.cloudflare.com/
+          description: CDN和安全服务
     - Google:
         - icon: https://www.google.com/favicon.ico
           href: https://www.google.com/
+          description: 谷歌搜索
     - Bing:
         - icon: https://www.bing.com/favicon.ico
           href: https://www.bing.com
-    - Yahoo:
-        - icon: https://www.yahoo.com/favicon.ico
-          href: https://www.yahoo.com
+          description: 必应搜索
     - Baidu:
         - icon: https://www.baidu.com/favicon.ico
           href: https://www.baidu.com
+          description: 百度搜索
 
-- 人工智能:
+- AI工具:
+    - ChatGPT:
+        - icon: https://cdn.oaistatic.com/favicon.ico
+          href: https://chat.openai.com
+          description: OpenAI的对话AI助手
+    - Claude:
+        - icon: https://claude.ai/favicon.ico
+          href: https://claude.ai/chat
+          description: Anthropic的AI助手
     - DeepSeek:
         - icon: https://www.deepseek.com/favicon.ico
           href: https://www.deepseek.com
+          description: 深度求索AI模型
     - 通义千问:
         - icon: https://img.alicdn.com/imgextra/i1/O1CN01asLYeX1WhbsyEZn5u_!!6000000002820-55-tps-56-56.svg
           href: https://tongyi.aliyun.com
-    - ChatGPT:
-        - icon: https://chatgpt.com/favicon.ico
-          href: https://chatgpt.com
+          description: 阿里云大语言模型
+    - 文心一言:
+        - icon: https://nlp-eb.cdn.bcebos.com/logo/favicon.ico
+          href: https://yiyan.baidu.com
+          description: 百度AI对话助手
+    - Kimi:
+        - icon: https://statics.moonshot.cn/kimi-chat/favicon.ico
+          href: https://kimi.moonshot.cn
+          description: 月之暗面AI助手
+    - 豆包:
+        - icon: https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/doubao/web/logo-icon.png
+          href: https://www.doubao.com
+          description: 字节跳动AI助手
+    - Gemini:
+        - icon: https://www.gstatic.com/lamda/images/gemini_favicon_f069958c85030456e93de685481c559f160ea06b.png
+          href: https://gemini.google.com
+          description: Google AI助手
+    - Perplexity:
+        - icon: https://www.perplexity.ai/favicon.svg
+          href: https://perplexity.ai
+          description: AI搜索引擎
+    - Midjourney:
+        - icon: https://cdn.midjourney.com/favicon.ico
+          href: https://www.midjourney.com
+          description: AI图像生成工具
+    - Stable Diffusion:
+        - icon: https://stablediffusionweb.com/favicon.ico
+          href: https://stablediffusionweb.com
+          description: 开源AI绘画工具
+    - Runway:
+        - icon: https://runwayml.com/favicon.ico
+          href: https://runwayml.com
+          description: AI视频生成平台
+    - Suno:
+        - icon: https://suno.com/favicon.ico
+          href: https://suno.com
+          description: AI音乐生成工具
+    - Udio:
+        - icon: https://www.udio.com/favicon.ico
+          href: https://www.udio.com
+          description: AI音乐创作平台
+    - Cursor:
+        - icon: https://cursor.sh/favicon.ico
+          href: https://cursor.sh
+          description: AI代码编辑器
+    - GitHub Copilot:
+        - icon: https://github.githubassets.com/favicons/favicon.svg
+          href: https://github.com/features/copilot
+          description: GitHub AI编程助手
+    - Hugging Face:
+        - icon: https://huggingface.co/front/assets/huggingface_logo-noborder.svg
+          href: https://huggingface.co
+          description: AI模型社区平台
+
+- 开发工具:
+    - Visual Studio Code:
+        - icon: https://code.visualstudio.com/favicon.ico
+          href: https://code.visualstudio.com
+          description: 微软开源代码编辑器
+    - JetBrains:
+        - icon: https://www.jetbrains.com/favicon.ico
+          href: https://www.jetbrains.com
+          description: 专业开发工具套件
+    - Docker Hub:
+        - icon: https://www.docker.com/favicon.ico
+          href: https://hub.docker.com
+          description: 容器镜像仓库
+    - npm:
+        - icon: https://static-production.npmjs.com/b0f1a8318363185cc2ea6a40ac23eeb2.png
+          href: https://www.npmjs.com
+          description: Node.js包管理器
+    - PyPI:
+        - icon: https://pypi.org/static/images/favicon.6a76275d.ico
+          href: https://pypi.org
+          description: Python包索引
+    - Maven Repository:
+        - icon: https://mvnrepository.com/favicon.ico
+          href: https://mvnrepository.com
+          description: Java依赖管理
+    - Postman:
+        - icon: https://www.postman.com/favicon.ico
+          href: https://www.postman.com
+          description: API开发测试工具
+    - Figma:
+        - icon: https://static.figma.com/app/icon/1/favicon.ico
+          href: https://www.figma.com
+          description: 协作设计工具
+    - Docker Desktop:
+        - icon: https://app.docker.com/favicon.ico
+          href: https://app.docker.com/
+          description: 容器桌面应用
+    - Iconify:
+        - icon: https://iconify.design/favicon.ico
+          href: https://iconify.design/
+          description: 开源图标库
+    - Nerd Fonts:
+        - icon: https://www.nerdfonts.com/favicon.ico
+          href: https://www.nerdfonts.com/font-downloads
+          description: 程序员字体集合
+    - Dashboard Icons:
+        - icon: https://github.githubassets.com/favicons/favicon.svg
+          href: https://github.com/homarr-labs/dashboard-icons/blob/main/ICONS.md
+          description: 仪表板图标库
+
+- 云服务:
+    - 阿里云:
+        - icon: https://img.alicdn.com/tfs/TB1_ZXuNcfpK1RjSZFOXXa6nFXa-32-32.ico
+          href: https://www.aliyun.com
+          description: 阿里巴巴云计算服务
+    - 腾讯云:
+        - icon: https://cloudcache.tencent-cloud.com/qcloud/favicon.ico
+          href: https://cloud.tencent.com
+          description: 腾讯云计算服务
+    - 华为云:
+        - icon: https://www.huaweicloud.com/favicon.ico
+          href: https://www.huaweicloud.com
+          description: 华为云计算服务
+    - AWS:
+        - icon: https://a0.awsstatic.com/libra-css/images/site/fav/favicon.ico
+          href: https://aws.amazon.com
+          description: 亚马逊云服务
+    - Azure:
+        - icon: https://azure.microsoft.com/favicon.ico
+          href: https://azure.microsoft.com
+          description: 微软云服务
+    - Google Cloud:
+        - icon: https://cloud.google.com/favicon.ico
+          href: https://cloud.google.com
+          description: 谷歌云服务
+    - Vercel:
+        - icon: https://vercel.com/favicon.ico
+          href: https://vercel.com
+          description: 前端部署平台
+    - Netlify:
+        - icon: https://www.netlify.com/favicon.ico
+          href: https://www.netlify.com
+          description: 静态网站托管
+
+- 在线学习:
+    - MDN Web Docs:
+        - icon: https://developer.mozilla.org/favicon-48x48.cbbd161b5b0b.png
+          href: https://developer.mozilla.org
+          description: Web开发权威文档
+    - W3Schools:
+        - icon: https://www.w3schools.com/favicon.ico
+          href: https://www.w3schools.com
+          description: Web技术教程网站
+    - 菜鸟教程:
+        - icon: https://static.runoob.com/images/favicon.ico
+          href: https://www.runoob.com
+          description: 编程入门教程
+    - LeetCode:
+        - icon: https://leetcode.com/favicon.ico
+          href: https://leetcode.com
+          description: 算法编程练习
+    - 力扣:
+        - icon: https://static.leetcode-cn.com/cn-frontendx/production/_next/static/images/favicon-32x32.png
+          href: https://leetcode.cn
+          description: 中文算法练习平台
+    - Coursera:
+        - icon: https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/favicon-v2-32x32.png
+          href: https://www.coursera.org
+          description: 在线课程平台
+    - edX:
+        - icon: https://www.edx.org/favicon.ico
+          href: https://www.edx.org
+          description: 免费在线课程
+    - 中国大学MOOC:
+        - icon: https://www.icourse163.org/favicon.ico
+          href: https://www.icourse163.org
+          description: 中文慕课平台
+
+- 设计资源:
+    - Dribbble:
+        - icon: https://cdn.dribbble.com/assets/favicon-b38525134603b7942c2c54a8b1a4a1e5b0e5c4e8b5b5b5b5b5b5b5b5b5b5.ico
+          href: https://dribbble.com
+          description: 设计师作品展示平台
+    - Behance:
+        - icon: https://www.behance.net/favicon.ico
+          href: https://www.behance.net
+          description: Adobe创意作品平台
+    - Unsplash:
+        - icon: https://unsplash.com/favicon-32x32.png
+          href: https://unsplash.com
+          description: 免费高质量图片
+    - Pexels:
+        - icon: https://www.pexels.com/favicon.ico
+          href: https://www.pexels.com
+          description: 免费摄影图片库
+    - Pixabay:
+        - icon: https://pixabay.com/favicon-32x32.png
+          href: https://pixabay.com
+          description: 免费图片和视频
+    - Iconfont:
+        - icon: https://img.alicdn.com/imgextra/i4/O1CN01Z5paLz1O0zuCC7osS_!!6000000001644-55-tps-83-82.svg
+          href: https://www.iconfont.cn
+          description: 阿里巴巴图标库
+    - Font Awesome:
+        - icon: https://fontawesome.com/favicon.ico
+          href: https://fontawesome.com
+          description: 网页图标字体库
+    - Google Fonts:
+        - icon: https://fonts.google.com/favicon.ico
+          href: https://fonts.google.com
+          description: 谷歌字体库
+
+- 娱乐休闲:
+    - YouTube:
+        - icon: https://www.youtube.com/favicon.ico
+          href: https://www.youtube.com
+          description: 全球视频分享平台
+    - Netflix:
+        - icon: https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.ico
+          href: https://www.netflix.com
+          description: 流媒体视频服务
+    - 爱奇艺:
+        - icon: https://www.iqiyi.com/favicon.ico
+          href: https://www.iqiyi.com
+          description: 中国视频网站
+    - 腾讯视频:
+        - icon: https://v.qq.com/favicon.ico
+          href: https://v.qq.com
+          description: 腾讯视频平台
+    - 优酷:
+        - icon: https://img.alicdn.com/tfs/TB1WeJ9Xrj1gK0jSZFuXXcrHpXa-195-195.png
+          href: https://www.youku.com
+          description: 阿里巴巴视频平台
+    - 网易云音乐:
+        - icon: https://s1.music.126.net/style/favicon.ico
+          href: https://music.163.com
+          description: 网易音乐平台
+    - QQ音乐:
+        - icon: https://y.qq.com/favicon.ico
+          href: https://y.qq.com
+          description: 腾讯音乐平台
+    - Spotify:
+        - icon: https://open.spotify.com/favicon.ico
+          href: https://open.spotify.com
+          description: 全球音乐流媒体
+
+- 影视制作:
+    - Adobe Creative Cloud:
+        - icon: https://www.adobe.com/favicon.ico
+          href: https://www.adobe.com/creativecloud.html
+          description: Adobe创意套件
+    - Premiere Pro:
+        - icon: https://www.adobe.com/content/dam/cc/icons/premiere.svg
+          href: https://www.adobe.com/products/premiere.html
+          description: 专业视频编辑软件
+    - After Effects:
+        - icon: https://www.adobe.com/content/dam/cc/icons/after-effects.svg
+          href: https://www.adobe.com/products/aftereffects.html
+          description: 动态图形和视觉效果
+    - DaVinci Resolve:
+        - icon: https://www.blackmagicdesign.com/favicon.ico
+          href: https://www.blackmagicdesign.com/products/davinciresolve
+          description: 专业调色和剪辑软件
+    - Final Cut Pro:
+        - icon: https://www.apple.com/favicon.ico
+          href: https://www.apple.com/final-cut-pro
+          description: 苹果专业视频编辑
+    - Blender:
+        - icon: https://www.blender.org/favicon.ico
+          href: https://www.blender.org
+          description: 开源3D创作套件
+    - VideoHive:
+        - icon: https://videohive.net/favicon.ico
+          href: https://videohive.net
+          description: 视频模板素材库
+    - Shutterstock:
+        - icon: https://ak.picdn.net/assets/cms/97e1dd3f4c708b30f9c4b0988235e5c404b9dcc1-favicon.ico
+          href: https://shutterstock.com
+          description: 商业素材库
+    - Freepik:
+        - icon: https://fp.cdnpk.net/favicon.ico
+          href: https://freepik.com
+          description: 免费设计素材
+    - Mixkit:
+        - icon: https://mixkit.co/favicon.ico
+          href: https://mixkit.co
+          description: 免费视频素材
+    - Epidemic Sound:
+        - icon: https://www.epidemicsound.com/favicon.ico
+          href: https://www.epidemicsound.com
+          description: 版权音乐库
+    - Freesound:
+        - icon: https://freesound.org/favicon.ico
+          href: https://freesound.org
+          description: 免费音效库
+    - IMDb:
+        - icon: https://www.imdb.com/favicon.ico
+          href: https://www.imdb.com
+          description: 互联网电影数据库
+    - 豆瓣电影:
+        - icon: https://movie.douban.com/favicon.ico
+          href: https://movie.douban.com
+          description: 中文电影评分网站
+    - Aegisub:
+        - icon: https://aegisub.org/favicon.ico
+          href: https://aegisub.org
+          description: 字幕制作工具
+
+- 系统工具:
+    - Netdata:
+        - icon: https://app.netdata.cloud/favicon.ico
+          href: https://app.netdata.cloud/
+          description: 系统监控工具
+    - 宝塔面板:
+        - icon: https://www.bt.cn/favicon.ico
+          href: https://www.kancloud.cn/chudong/bt2017/424215
+          description: 服务器管理面板
+    - Portainer:
+        - icon: https://www.portainer.io/favicon.ico
+          href: https://blog.csdn.net/u011308433/article/details/131815496
+          description: Docker容器管理
+    - PotPlayer:
+        - icon: https://apps.microsoft.com/favicon.ico
+          href: https://apps.microsoft.com/detail/xp8bsbgqw2dks0
+          description: 多媒体播放器
+    - Arc Studio:
+        - icon: https://app.arcstudiopro.com/favicon.ico
+          href: https://app.arcstudiopro.com/
+          description: 专业编剧软件
+    - 秀米编辑器:
+        - icon: https://xiumi.us/favicon.ico
+          href: https://xiumi.us/
+          description: 微信图文编辑器
+    - LiblibAI:
+        - icon: https://www.liblib.art/favicon.ico
+          href: https://www.liblib.art/sd
+          description: AI模型分享平台
+    - 中国版权登记:
+        - icon: https://register.ccopyright.com.cn/favicon.ico
+          href: https://register.ccopyright.com.cn/registration.html
+          description: 版权登记服务
+    - 苏州数据开放:
+        - icon: https://data.suzhou.gov.cn/favicon.ico
+          href: https://data.suzhou.gov.cn/
+          description: 政府数据开放平台

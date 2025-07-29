@@ -3,28 +3,38 @@
 # https://gethomepage.dev/configs/info-widgets/
 
 - resources:
+    label: 系统资源
     cpu: true
     memory: true
     disk: /
-    cputemp: true # disabled by default
-    uptime: true # disabled by default
-    expanded: true # show the expanded view
+    cputemp: true
+    uptime: true
+    expanded: true
+    refresh: 1000
 
 - search:
     provider: baidu
     target: _blank
+    placeholder: 搜索...
 
 - openmeteo:
-    label: 苏州 # optional
+    label: 苏州天气
     latitude: 31.2222
     longitude: 121.4581
-    timezone: Asia/Shanghai # optional
-    units: metric # or imperial
-    cache: 5 # Time in minutes to cache API responses, to stay within limits
+    timezone: Asia/Shanghai
+    units: metric
+    cache: 5
+    format:
+      maximumFractionDigits: 1
 
 - datetime:
     text_size: xl
     format:
-      dateStyle: short
+      dateStyle: full
       timeStyle: short
       hourCycle: h23
+    locale: zh-CN
+
+- greeting:
+    text_size: xl
+    text: 欢迎使用个人主页

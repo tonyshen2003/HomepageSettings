@@ -1,0 +1,305 @@
+/* 沈孙丰个人主页 - 现代化美化样式 */
+
+/* 全局样式优化 */
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* 页面整体优化 */
+body {
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-attachment: fixed;
+}
+
+/* 主容器样式 */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 标题美化 */
+h1, h2, h3 {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* 分组标题样式 */
+.group-title {
+  position: relative;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group-title:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.group-title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--primary-gradient);
+  border-radius: 16px 16px 0 0;
+}
+
+/* 服务卡片美化 */
+.service-card, .bookmark-card {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 20px !important;
+  box-shadow: var(--shadow-soft) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.service-card::before, .bookmark-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--accent-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.service-card:hover, .bookmark-card:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: var(--shadow-hover) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.service-card:hover::before, .bookmark-card:hover::before {
+  opacity: 0.1;
+}
+
+/* 图标美化 */
+.service-icon, .bookmark-icon {
+  border-radius: 16px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.service-card:hover .service-icon,
+.bookmark-card:hover .bookmark-icon {
+  transform: scale(1.1) rotate(5deg) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 文字样式优化 */
+.service-name, .bookmark-name {
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.service-description {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+
+/* 网格布局优化 */
+.grid-container {
+  gap: 20px !important;
+  padding: 20px !important;
+}
+
+/* 搜索框美化 */
+.search-container {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 20px !important;
+  box-shadow: var(--shadow-soft) !important;
+  margin-bottom: 30px !important;
+}
+
+.search-input {
+  background: transparent !important;
+  border: none !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 16px !important;
+  padding: 15px 20px !important;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* 小部件美化 */
+.widget {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 20px !important;
+  box-shadow: var(--shadow-soft) !important;
+  transition: all 0.3s ease !important;
+}
+
+.widget:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-gradient);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-gradient);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .grid-container {
+    gap: 15px !important;
+    padding: 15px !important;
+  }
+  
+  .service-card, .bookmark-card {
+    border-radius: 16px !important;
+  }
+  
+  .group-title {
+    padding: 12px 16px;
+    border-radius: 12px;
+  }
+}
+
+/* 加载动画 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-card, .bookmark-card, .widget {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* 特殊效果 */
+.service-card:nth-child(odd), .bookmark-card:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+.service-card:nth-child(even), .bookmark-card:nth-child(even) {
+  animation-delay: 0.2s;
+}
+
+/* 主题切换按钮美化 */
+.theme-toggle {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 50% !important;
+  box-shadow: var(--shadow-soft) !important;
+  transition: all 0.3s ease !important;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+
+/* 状态指示器 */
+.status-indicator {
+  position: relative;
+}
+
+.status-indicator::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+/* 自定义类别样式 */
+.category-ai .service-card::before,
+.category-ai .bookmark-card::before {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.category-dev .service-card::before,
+.category-dev .bookmark-card::before {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.category-media .service-card::before,
+.category-media .bookmark-card::before {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* 性能优化 */
+* {
+  will-change: auto;
+}
+
+.service-card, .bookmark-card {
+  contain: layout style paint;
+}
