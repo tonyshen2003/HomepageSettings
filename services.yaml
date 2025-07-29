@@ -4,17 +4,17 @@
 
 - 媒体影音:
     - Bilibili:
-        icon: https://www.bilibili.com/favicon.ico
+        icon: si-bilibili-#00A1D6
         href: https://www.bilibili.com
         description: 哔哩哔哩弹幕视频网站，国内知名的视频分享平台
         ping: https://www.bilibili.com
     - YouTube:
-        icon: https://www.youtube.com/favicon.ico
+        icon: si-youtube-#FF0000
         href: https://www.youtube.com
         description: 全球最大的视频分享平台
         ping: https://www.youtube.com
     - Netflix:
-        icon: https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.ico
+        icon: si-netflix-#E50914
         href: https://www.netflix.com
         description: 全球领先的流媒体娱乐服务
         ping: https://www.netflix.com
@@ -26,19 +26,19 @@
         description: 用流动的影像传承历史，以不变的温度记录人文
         ping: https://szzxshumei.com
     - 树莓技术文档:
-        icon: https://szzxshumei.com/wp-content/uploads/2025/01/Raspberry.webp
+        icon: mdi-file-document-outline-#4CAF50
         href: https://docs.szzxshumei.com
         description: 数字媒体技术文档和创作交流平台
         ping: https://docs.szzxshumei.com
 
 - AI服务:
     - ChatGPT:
-        icon: https://cdn.oaistatic.com/favicon.ico
+        icon: openai-light
         href: https://chat.openai.com
         description: OpenAI 的对话 AI 助手服务
         ping: https://chat.openai.com
     - Claude:
-        icon: https://claude.ai/favicon.ico
+        icon: si-claude-#D97757
         href: https://claude.ai
         description: Anthropic 的 AI 助手服务
         ping: https://claude.ai

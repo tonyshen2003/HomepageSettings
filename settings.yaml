@@ -5,6 +5,7 @@
 providers:
   openweathermap: openweathermapapikey
   weatherapi: weatherapiapikey
+  finnhub: d248crhr01qmb5913ipgd248crhr01qmb5913iq0
 
 language: zh-CN
 

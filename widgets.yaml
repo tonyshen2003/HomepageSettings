@@ -38,3 +38,20 @@
 - greeting:
     text_size: xl
     text: 欢迎使用个人主页
+
+- logo:
+    icon: mdi-home-circle-#4285F4
+    href: https://gethomepage.dev
+    target: _blank
+
+- stocks:
+    provider: finnhub
+    color: true
+    cache: 5
+    watchlist:
+      - AAPL
+      - MSFT
+      - NVDA
+      - TSM
+      - GOOGL
+      - AMZN
