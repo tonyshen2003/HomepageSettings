@@ -1,0 +1,42 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/bookmarks
+
+- 常用网站:
+    - 爱折腾的老高微博:
+        - icon: /icons/dff.png
+          href: https://diyforfun.cn/
+    - Qbittorrent:
+        - icon: qbittorrent.png
+          href: http://192.168.140.113:26980/
+    - LibreSpeed:
+        - icon: http://192.168.8.8/favicon.ico
+          href: http://192.168.8.8/
+    - Github:
+        - icon: github-light.svg
+          href: https://github.com/
+
+- 搜索引擎:
+    - Google:
+        - icon: https://www.google.com/favicon.ico
+          href: https://www.google.com/
+    - Bing:
+        - icon: https://www.bing.com/favicon.ico
+          href: https://www.bing.com
+    - Yahoo:
+        - icon: https://www.yahoo.com/favicon.ico
+          href: https://www.yahoo.com
+    - Baidu:
+        - icon: https://www.baidu.com/favicon.ico
+          href: https://www.baidu.com
+
+- 人工智能:
+    - DeepSeek:
+        - icon: https://www.deepseek.com/favicon.ico
+          href: https://www.deepseek.com
+    - 通义千问:
+        - icon: https://img.alicdn.com/imgextra/i1/O1CN01asLYeX1WhbsyEZn5u_!!6000000002820-55-tps-56-56.svg
+          href: https://tongyi.aliyun.com
+    - ChatGPT:
+        - icon: https://chatgpt.com/favicon.ico
+          href: https://chatgpt.com

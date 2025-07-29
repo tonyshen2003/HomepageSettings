@@ -1,0 +1,90 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/services
+
+- 媒体影音:
+    - Bilibili:
+        icon: https://www.bilibili.com/favicon.ico
+        href: https://www.bilibili.com
+        description: 哔哩哔哩（bilibili.com)是国内知名的视频弹幕网站，这里有及时的动漫新番，活跃的ACG氛围，有创意的Up主。大家可以在这里找到许多欢乐。
+        ping: https://www.bilibili.com
+        
+    - JellyfinServer:
+        icon: jellyfin.png
+        href: http://192.168.140.113:8096 # Jellyfin IP:8096
+        description: Jellyfin in my Server-Dell
+        ping: 192.168.140.113 # Jellyfin IP
+        
+    - PlexServer:
+        icon: plex.png
+        href: http://192.168.140.103:32400 # Plex IP:32400
+        description: From MacMini MacMini M4pro
+        ping: 192.168.140.103 # Plex IP
+
+- 本地服务:
+    - PVE:
+        icon: proxmox.png
+        href: https://x.x.x.x:8006 # PVE IP:8006
+        description: 本地PVE
+        ping: 127.0.0.1 # PVE IP
+        widget:
+          type: proxmox
+          url: https://x.x.x.x:8006
+          username: api_token_id
+          password: api_token_secret
+          node: pve # optional
+        
+    - Portainer:
+        icon: portainer.png
+        href: http://x.x.x.x:9000 # Portainer IP:9000
+        description: 本地Portainer
+        ping: 127.0.0.1 # Portainer IP
+
+    - NAS:
+        icon: /icons/dsm.png
+        href: https://x.x.x.x:12345 # NAS IP:端口
+        description: My NAS
+        ping: 127.0.0.1 # NAS IP
+        widget:
+          type: diskstation
+          url: https://x.x.x.x:12345 # NAS IP:端口
+          username: remote_stats
+          password: 你的密码 #如SYNO.Core.System报错，Authentication Failed认证失败报错，可使用群晖账号随机密码。
+          volume: volume_1 # 其中volume_后接1或2或3或4...不支持叠加，对应volume1/volume2/volume3/volume4/...
+    - Download Station:
+        widget:
+          type: downloadstation
+          url: https://x.x.x.x:12345 # NAS IP:端口
+          username: remote_stats
+          password: 你的密码
+          
+    - iKuai:
+        icon: openwrt.png
+        href: http://ikuai.shensunfeng.com # OpenWRT IP
+        description: 本地OP
+        ping: ikuai.shensunfeng.com # OpenWRT IP
+
+- 树莓社:
+    - 苏州中学树莓社官网:
+        icon: https://szzxshumei.com/wp-content/uploads/2025/01/Raspberry.webp
+        href: https://szzxshumei.com
+        description: 用流动的影像传承历史，以不变的温度记录人文。
+        ping: https://szzxshumei.com
+        
+    - 树莓技术文档:
+        icon: https://szzxshumei.com/wp-content/uploads/2025/01/Raspberry.webp
+        href: https://docs.szzxshumei.com
+        description: 一个关注于新时代数字媒体的社团，一个以影视创作为核心的艺术创作交流平台。
+        ping: https://docs.szzxshumei.com
+          
+    - iKuai:
+        icon: /icons/ikuai.png
+        href: https://ikuai.myddns.com:12345
+        description: 远程爱快
+        ping: https://ikuai.myddns.com:12345
+        
+    - OpenWRT:
+        icon: openwrt.png
+        href: http://op.myddns.com:12345
+        description: 办公室OP
+        ping: http://op.myddns.com:12345
