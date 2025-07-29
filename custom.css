@@ -376,7 +376,7 @@ body::before {
   animation: borderGlow 2s ease-in-out infinite;
 }
 
-/* 背景粒子容器 - 移除z-index以避免与canvas冲突 */
+/* 背景粒子容器 - 移除 z-index 以避免与 canvas 冲突 */
 .particles-container {
   position: fixed;
   top: 0;

@@ -164,7 +164,7 @@
     - Homepage状态:
         icon: mdi-monitor-dashboard-#4CAF50
         href: http://localhost:3000
-        description: Homepage仪表板状态监控
+        description: Homepage 仪表板状态监控
         ping: localhost
         widget:
           type: customapi

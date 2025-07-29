@@ -2,7 +2,7 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/latest/configs/settings
 
-# API提供商配置
+# API 提供商配置
 providers:
   openweathermap: openweathermapapikey
   weatherapi: weatherapiapikey
@@ -11,7 +11,7 @@ providers:
 # 基础配置
 language: zh-CN
 title: 沈孙丰个人主页
-description: 沈孙丰的个人主页 - 集成常用服务、AI工具和系统监控
+description: 沈孙丰的个人主页 - 集成常用服务、AI 工具和系统监控
 startUrl: /
 
 # 图标配置
@@ -78,7 +78,7 @@ bookmarksStyle: icons
 # 禁用搜索引擎（如果不需要）
 # disableCollapse: false
 
-# 自定义CSS和JS（如果需要）
+# 自定义 CSS 和 JS（如果需要）
 # customCSS: /custom.css
 # customJS: /custom.js
 
