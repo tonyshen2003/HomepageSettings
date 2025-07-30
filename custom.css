@@ -1,18 +1,44 @@
 /* 沈孙丰个人主页 - 现代化美化样式 */
 
-/* 全局样式优化 - 现代化设计变量 */
+/* Apple HIG 材质设计系统 */
 :root {
+  /* Liquid Glass 材质变量 */
+  --liquid-glass-bg: rgba(255, 255, 255, 0.08);
+  --liquid-glass-border: rgba(255, 255, 255, 0.12);
+  --liquid-glass-backdrop: blur(20px) saturate(180%);
+  
+  /* 标准材质层级 */
+  --material-thin: rgba(255, 255, 255, 0.05);
+  --material-regular: rgba(255, 255, 255, 0.08);
+  --material-thick: rgba(255, 255, 255, 0.12);
+  --material-ultra-thick: rgba(255, 255, 255, 0.18);
+  
+  /* 活力色彩系统 */
+  --vibrant-primary: rgba(102, 126, 234, 0.9);
+  --vibrant-secondary: rgba(118, 75, 162, 0.8);
+  --vibrant-tertiary: rgba(79, 172, 254, 0.7);
+  --vibrant-quaternary: rgba(0, 242, 254, 0.6);
+  --vibrant-green: rgba(52, 199, 89, 1);
+  --vibrant-red: rgba(255, 69, 58, 1);
+  
+  /* 阴影和深度 */
+  --depth-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --depth-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  --depth-3: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  --depth-4: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  
+  /* 保留兼容性变量 */
   --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
   --warning-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --glass-bg: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.15);
-  --glass-hover: rgba(255, 255, 255, 0.12);
-  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.12);
-  --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.18);
-  --shadow-active: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --glass-bg: var(--material-regular);
+  --glass-border: var(--liquid-glass-border);
+  --glass-hover: var(--material-thick);
+  --shadow-soft: var(--depth-2);
+  --shadow-hover: var(--depth-3);
+  --shadow-active: var(--depth-1);
   --border-radius: 16px;
   --border-radius-small: 12px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -27,33 +53,18 @@ body {
   scroll-behavior: smooth;
 }
 
-/* 滚动条美化 */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
+/* 滚动条样式已在下方 Apple HIG 部分定义，此处删除重复定义 */
 
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--glass-bg);
-  border-radius: 4px;
-  backdrop-filter: blur(10px);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--glass-hover);
-}
-
-/* 主容器样式 */
+/* Apple HIG 主容器 - 内容层 */
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 24px;
   transition: var(--transition);
+  background: transparent !important;
+  backdrop-filter: none !important;
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 768px) {
@@ -62,16 +73,18 @@ body {
   }
 }
 
-/* 标题美化 */
+/* Apple HIG 标题 - 活力色彩系统 */
 h1, h2, h3 {
-  background: var(--primary-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 700;
+  color: var(--vibrant-primary) !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
   position: relative;
+  
+  /* 增强可读性 */
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
 }
 
 h1::after, h2::after {
@@ -86,18 +99,26 @@ h1::after, h2::after {
   opacity: 0.8;
 }
 
-/* 分组标题样式 */
+/* Apple HIG 分组标题 - 功能层元素 */
 .group-title {
   position: relative;
   padding: 18px 24px;
   margin-bottom: 24px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
+  /* 使用 Liquid Glass 效果突出功能性 */
+  background: var(--liquid-glass-bg) !important;
+  backdrop-filter: var(--liquid-glass-backdrop) !important;
+  border: 1px solid var(--liquid-glass-border) !important;
   border-radius: var(--border-radius);
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--depth-1) !important;
   transition: var(--transition);
   overflow: hidden;
+  
+  color: var(--vibrant-secondary) !important;
+  font-weight: 600 !important;
+  font-size: 1.1em !important;
+  
+  /* 增强层次感 */
+  z-index: 2 !important;
 }
 
 .group-title::before {
@@ -220,18 +241,23 @@ h1::after, h2::after {
   border-radius: 16px 16px 0 0;
 }
 
-/* 服务卡片美化 */
+/* Apple HIG 标准材质 - 内容层卡片 */
 .service-card, .bookmark-card {
-  background: var(--glass-bg) !important;
-  backdrop-filter: blur(20px) !important;
-  border: 1px solid var(--glass-border) !important;
-  border-radius: 20px !important;
-  box-shadow: var(--shadow-soft) !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  /* 使用标准材质而非 Liquid Glass（遵循 HIG 指导） */
+  background: var(--material-regular) !important;
+  backdrop-filter: var(--liquid-glass-backdrop) !important;
+  border: 1px solid var(--liquid-glass-border) !important;
+  border-radius: var(--border-radius) !important;
+  box-shadow: var(--depth-2) !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
   overflow: hidden !important;
   position: relative !important;
+  
+  /* 增强对比度和可读性 */
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
+/* Apple HIG 材质层次效果 */
 .service-card::before, .bookmark-card::before {
   content: '';
   position: absolute;
@@ -239,50 +265,82 @@ h1::after, h2::after {
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--accent-gradient);
+  /* 模拟光线反射的渐变 */
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15) 0%, 
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.02) 100%);
   opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 1;
+  
+  /* 增强玻璃质感 */
+  backdrop-filter: blur(1px);
 }
 
-/* 卡片悬停效果 - 优化动效规范 */
+/* Apple HIG 悬停效果 - 增强材质厚度 */
 .service-card:hover, .bookmark-card:hover {
   transform: translateY(-4px) scale(1.01) !important;
-  box-shadow: var(--shadow-hover) !important;
-  background: rgba(255, 255, 255, 0.12) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: var(--depth-3) !important;
+  background: var(--material-thick) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  
+  /* 增强活力色彩 */
+  color: rgba(255, 255, 255, 1) !important;
 }
 
 .service-card:hover::before, .bookmark-card:hover::before {
   opacity: 0.1;
 }
 
-/* 图标美化 */
+/* Apple HIG 图标系统 - 活力效果 */
 .service-icon, .bookmark-icon {
-  border-radius: 16px !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
-  transition: all 0.3s ease !important;
+  border-radius: 12px !important;
+  box-shadow: var(--depth-1) !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  opacity: 0.9 !important;
+  
+  /* 增强图标可见性 */
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2)) !important;
 }
 
 .service-card:hover .service-icon,
 .bookmark-card:hover .bookmark-icon {
-  transform: scale(1.1) rotate(5deg) !important;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2) !important;
+  transform: scale(1.05) !important;
+  box-shadow: var(--depth-2) !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25)) !important;
 }
 
-/* 文字样式优化 */
+/* Apple HIG 文字活力系统 */
 .service-name, .bookmark-name {
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   font-size: 14px !important;
   color: rgba(255, 255, 255, 0.9) !important;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  
+  /* 增强可读性 */
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.service-card:hover .service-name,
+.bookmark-card:hover .bookmark-name {
+  color: var(--vibrant-primary) !important;
 }
 
 .service-description {
   color: rgba(255, 255, 255, 0.7) !important;
   font-size: 12px !important;
   line-height: 1.4 !important;
+  transition: color 0.25s ease !important;
+}
+
+.service-card:hover .service-description {
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 
 /* 网格布局优化 */
@@ -291,14 +349,18 @@ h1::after, h2::after {
   padding: 20px !important;
 }
 
-/* 搜索框美化 */
+/* Apple HIG 搜索框 - Liquid Glass 功能层 */
 .search-container {
-  background: var(--glass-bg) !important;
-  backdrop-filter: blur(20px) !important;
-  border: 1px solid var(--glass-border) !important;
-  border-radius: 20px !important;
-  box-shadow: var(--shadow-soft) !important;
+  background: var(--liquid-glass-bg) !important;
+  backdrop-filter: var(--liquid-glass-backdrop) !important;
+  border: 1px solid var(--liquid-glass-border) !important;
+  border-radius: var(--border-radius) !important;
+  box-shadow: var(--depth-2) !important;
   margin-bottom: 30px !important;
+  
+  /* 功能层特性 */
+  position: relative !important;
+  z-index: 3 !important;
 }
 
 .search-input {
@@ -307,45 +369,66 @@ h1::after, h2::after {
   color: rgba(255, 255, 255, 0.9) !important;
   font-size: 16px !important;
   padding: 15px 20px !important;
+  
+  /* 增强可读性 */
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
 }
 
 .search-input::placeholder {
-  color: rgba(255, 255, 255, 0.5) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
 }
 
-/* 小部件美化 */
+.search-input:focus {
+  outline: 2px solid var(--vibrant-primary) !important;
+  outline-offset: 2px !important;
+}
+
+/* Apple HIG 小部件 - 标准材质内容层 */
 .widget {
-  background: var(--glass-bg) !important;
-  backdrop-filter: blur(20px) !important;
-  border: 1px solid var(--glass-border) !important;
-  border-radius: 20px !important;
-  box-shadow: var(--shadow-soft) !important;
-  transition: all 0.3s ease !important;
+  background: var(--material-regular) !important;
+  backdrop-filter: var(--liquid-glass-backdrop) !important;
+  border: 1px solid var(--liquid-glass-border) !important;
+  border-radius: var(--border-radius) !important;
+  box-shadow: var(--depth-2) !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  
+  /* 内容层特性 */
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .widget:hover {
-  transform: translateY(-4px) !important;
-  box-shadow: var(--shadow-hover) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--depth-3) !important;
+  background: var(--material-thick) !important;
+  color: rgba(255, 255, 255, 1) !important;
 }
 
-/* 滚动条美化 */
+/* Apple HIG 滚动条 - 标准材质 */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  background: transparent;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-gradient);
-  border-radius: 10px;
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-gradient);
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--vibrant-primary);
+  border-color: var(--vibrant-primary);
 }
 
 /* 响应式设计 */
@@ -394,22 +477,34 @@ h1::after, h2::after {
   animation-delay: 0.2s;
 }
 
-/* 主题切换按钮美化 */
+/* Apple HIG 主题切换按钮 - Liquid Glass 功能层 */
 .theme-toggle {
-  background: var(--glass-bg) !important;
-  backdrop-filter: blur(20px) !important;
-  border: 1px solid var(--glass-border) !important;
+  background: var(--liquid-glass-bg) !important;
+  backdrop-filter: var(--liquid-glass-backdrop) !important;
+  border: 1px solid var(--liquid-glass-border) !important;
   border-radius: 50% !important;
-  box-shadow: var(--shadow-soft) !important;
-  transition: all 0.3s ease !important;
+  box-shadow: var(--depth-2) !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  
+  /* 功能层特性 */
+  position: relative !important;
+  z-index: 3 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .theme-toggle:hover {
-  transform: scale(1.1) !important;
-  box-shadow: var(--shadow-hover) !important;
+  transform: scale(1.05) !important;
+  box-shadow: var(--depth-3) !important;
+  color: rgba(255, 255, 255, 1) !important;
+  background: var(--liquid-glass-bg) !important;
 }
 
-/* 状态指示器 */
+.theme-toggle:focus {
+  outline: 2px solid var(--vibrant-primary) !important;
+  outline-offset: 2px !important;
+}
+
+/* Apple HIG 状态指示器 - 活力色彩系统 */
 .status-indicator {
   position: relative;
 }
@@ -419,25 +514,41 @@ h1::after, h2::after {
   position: absolute;
   top: -2px;
   right: -2px;
-  width: 12px;
-  height: 12px;
-  background: #10b981;
+  width: 10px;
+  height: 10px;
+  background: var(--vibrant-green);
   border-radius: 50%;
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
-  animation: pulse 2s infinite;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 0 0 1px rgba(52, 199, 89, 0.3),
+    var(--depth-1);
+  animation: apple-pulse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-@keyframes pulse {
+.status-indicator.offline::after {
+  background: var(--vibrant-red);
+  box-shadow: 
+    0 0 0 1px rgba(255, 69, 58, 0.3),
+    var(--depth-1);
+}
+
+@keyframes apple-pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+    box-shadow: 
+      0 0 0 0 rgba(52, 199, 89, 0.4),
+      var(--depth-1);
     transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
-    transform: scale(1.05);
+    box-shadow: 
+      0 0 0 6px rgba(52, 199, 89, 0),
+      var(--depth-2);
+    transform: scale(1.02);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    box-shadow: 
+      0 0 0 0 rgba(52, 199, 89, 0),
+      var(--depth-1);
     transform: scale(1);
   }
 }
@@ -512,17 +623,7 @@ canvas[style*="z-index: 9999"] {
   will-change: transform, left, top;
 }
 
-/* 页面加载动画 - 优化时长和缓动 */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* 页面加载动画已在上方定义，此处删除重复定义 */
 
 .service-card, .bookmark-card {
   animation: fadeInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
