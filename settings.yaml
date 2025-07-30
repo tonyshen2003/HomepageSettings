@@ -14,7 +14,7 @@ title: 沈孙丰个人主页
 description: 沈孙丰的个人主页 - 集成常用服务、AI 工具和系统监控
 startUrl: /
 
-# 图标配置 - 使用更现代的favicon
+# 图标配置 - 使用更现代的 favicon
 favicon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/homepage.png
 
 # 主题配置
@@ -96,7 +96,7 @@ fonts:
 # 自定义头部样式
 headerStyle: clean
 
-# 页面刷新间隔（30秒）
+# 页面刷新间隔（30 秒）
 refreshInterval: 30000
 
 # 启用自定义样式和脚本 <mcreference link="https://gethomepage.dev/configs/custom-css-js/" index="4">4</mcreference>

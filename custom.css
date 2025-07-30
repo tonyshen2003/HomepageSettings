@@ -1,162 +1,271 @@
-/* 沈孙丰个人主页 - 现代化美化样式 */
+/* 沈孙丰个人主页 - Apple Design Guidelines 2024 */
 
-/* Apple HIG 材质设计系统 */
+/* Apple HIG 2024 设计系统 - 遵循最新规范 */
 :root {
-  /* Liquid Glass 材质变量 */
-  --liquid-glass-bg: rgba(255, 255, 255, 0.08);
-  --liquid-glass-border: rgba(255, 255, 255, 0.12);
-  --liquid-glass-backdrop: blur(20px) saturate(180%);
+  /* Apple 2024 材质系统 - Liquid Glass Evolution */
+  --glass-ultra-thin: rgba(255, 255, 255, 0.03);
+  --glass-thin: rgba(255, 255, 255, 0.06);
+  --glass-regular: rgba(255, 255, 255, 0.09);
+  --glass-thick: rgba(255, 255, 255, 0.15);
+  --glass-ultra-thick: rgba(255, 255, 255, 0.22);
   
-  /* 标准材质层级 */
-  --material-thin: rgba(255, 255, 255, 0.05);
-  --material-regular: rgba(255, 255, 255, 0.08);
-  --material-thick: rgba(255, 255, 255, 0.12);
-  --material-ultra-thick: rgba(255, 255, 255, 0.18);
+  /* Apple 2024 边框系统 */
+  --border-ultra-thin: rgba(255, 255, 255, 0.08);
+  --border-thin: rgba(255, 255, 255, 0.12);
+  --border-regular: rgba(255, 255, 255, 0.18);
+  --border-thick: rgba(255, 255, 255, 0.25);
   
-  /* 活力色彩系统 */
-  --vibrant-primary: rgba(102, 126, 234, 0.9);
-  --vibrant-secondary: rgba(118, 75, 162, 0.8);
-  --vibrant-tertiary: rgba(79, 172, 254, 0.7);
-  --vibrant-quaternary: rgba(0, 242, 254, 0.6);
-  --vibrant-green: rgba(52, 199, 89, 1);
-  --vibrant-red: rgba(255, 69, 58, 1);
+  /* Apple 2024 背景模糊效果 */
+  --backdrop-light: blur(24px) saturate(200%) brightness(1.1);
+  --backdrop-regular: blur(32px) saturate(180%) brightness(1.05);
+  --backdrop-heavy: blur(40px) saturate(160%) brightness(1.0);
   
-  /* 阴影和深度 */
-  --depth-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  --depth-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  --depth-3: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  --depth-4: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  /* Apple 2024 活力色彩系统 - 增强对比度和可访问性 */
+  --system-blue: rgba(0, 122, 255, 1);
+  --system-purple: rgba(175, 82, 222, 1);
+  --system-pink: rgba(255, 45, 85, 1);
+  --system-red: rgba(255, 59, 48, 1);
+  --system-orange: rgba(255, 149, 0, 1);
+  --system-yellow: rgba(255, 204, 0, 1);
+  --system-green: rgba(52, 199, 89, 1);
+  --system-mint: rgba(0, 199, 190, 1);
+  --system-teal: rgba(48, 176, 199, 1);
+  --system-cyan: rgba(50, 173, 230, 1);
+  --system-indigo: rgba(88, 86, 214, 1);
   
-  /* 保留兼容性变量 */
-  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-  --warning-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --glass-bg: var(--material-regular);
-  --glass-border: var(--liquid-glass-border);
-  --glass-hover: var(--material-thick);
-  --shadow-soft: var(--depth-2);
-  --shadow-hover: var(--depth-3);
-  --shadow-active: var(--depth-1);
-  --border-radius: 16px;
-  --border-radius-small: 12px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Apple 2024 阴影系统 - 更自然的深度感知 */
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.06);
+  --shadow-2: 0 2px 8px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08);
+  --shadow-3: 0 4px 16px rgba(0, 0, 0, 0.16), 0 2px 8px rgba(0, 0, 0, 0.12);
+  --shadow-4: 0 8px 32px rgba(0, 0, 0, 0.20), 0 4px 16px rgba(0, 0, 0, 0.16);
+  --shadow-5: 0 16px 64px rgba(0, 0, 0, 0.24), 0 8px 32px rgba(0, 0, 0, 0.20);
+  
+  /* Apple 2024 圆角系统 - 更精确的层次感 */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 50%;
+  
+  /* Apple 2024 动画系统 - 更自然的缓动曲线 */
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Apple 2024 时间系统 */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 350ms;
+  --duration-slower: 500ms;
+  
+  /* 兼容性变量映射到新系统 */
+  --primary-gradient: linear-gradient(135deg, var(--system-blue) 0%, var(--system-purple) 100%);
+  --secondary-gradient: linear-gradient(135deg, var(--system-pink) 0%, var(--system-red) 100%);
+  --accent-gradient: linear-gradient(135deg, var(--system-cyan) 0%, var(--system-teal) 100%);
+  --success-gradient: linear-gradient(135deg, var(--system-green) 0%, var(--system-mint) 100%);
+  --warning-gradient: linear-gradient(135deg, var(--system-orange) 0%, var(--system-yellow) 100%);
+  --glass-bg: var(--glass-regular);
+  --glass-border: var(--border-thin);
+  --glass-hover: var(--glass-thick);
+  --shadow-soft: var(--shadow-2);
+  --shadow-hover: var(--shadow-3);
+  --shadow-active: var(--shadow-1);
+  --border-radius: var(--radius-lg);
+  --border-radius-small: var(--radius-md);
+  --transition: all var(--duration-normal) var(--ease-in-out);
 }
 
-/* 页面整体优化 */
+/* Apple 2024 页面整体优化 - 遵循和谐感原则 */
 body {
-  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Apple 2024 字体系统 - SF Pro 优先 */
+  font-family: 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Inter', system-ui, sans-serif;
   background-attachment: fixed;
-  line-height: 1.6;
-  letter-spacing: -0.01em;
+  line-height: 1.5; /* Apple 推荐的最佳可读性比例 */
+  letter-spacing: -0.005em; /* 更精确的字符间距 */
   scroll-behavior: smooth;
+  
+  /* Apple 2024 文本渲染优化 */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+  
+  /* Apple 2024 色彩管理 */
+  color-scheme: dark;
+  
+  /* 增强对比度和可访问性 */
+  color: rgba(255, 255, 255, 0.92);
 }
 
 /* 滚动条样式已在下方 Apple HIG 部分定义，此处删除重复定义 */
 
-/* Apple HIG 主容器 - 内容层 */
+/* Apple 2024 主容器 - 增强层次感 */
 .container {
-  max-width: 1400px;
+  max-width: 1440px; /* Apple 推荐的最佳内容宽度 */
   margin: 0 auto;
-  padding: 24px;
+  padding: clamp(16px, 4vw, 32px); /* 响应式内边距 */
   transition: var(--transition);
   background: transparent !important;
   backdrop-filter: none !important;
   position: relative;
   z-index: 1;
+  
+  /* Apple 2024 内容对齐 */
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3vw, 40px);
 }
 
 @media (max-width: 768px) {
   .container {
     padding: 16px;
+    gap: 20px;
   }
 }
 
-/* Apple HIG 标题 - 活力色彩系统 */
+/* Apple 2024 标题系统 - 清晰的视觉层次 */
 h1, h2, h3 {
-  color: var(--vibrant-primary) !important;
-  font-weight: 600 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
+  color: var(--system-blue) !important;
+  font-weight: 700 !important; /* Apple 推荐的标题字重 */
+  text-shadow: none !important; /* 移除阴影，保持简洁 */
+  letter-spacing: -0.015em; /* Apple 标准字符间距 */
+  margin-bottom: clamp(12px, 2vw, 20px);
   position: relative;
   
-  /* 增强可读性 */
+  /* Apple 2024 文本优化 */
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
+  
+  /* 增强对比度 */
+  filter: contrast(1.1) brightness(1.05);
 }
 
+/* Apple 2024 标题尺寸系统 */
+h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--system-blue) !important;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--system-purple) !important;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 600;
+  color: var(--system-indigo) !important;
+}
+
+/* Apple 2024 标题装饰 - 简洁的强调线 */
 h1::after, h2::after {
   content: '';
   position: absolute;
-  bottom: -8px;
+  bottom: -6px;
   left: 0;
-  width: 60px;
-  height: 3px;
+  width: clamp(40px, 8vw, 80px);
+  height: 2px;
   background: var(--accent-gradient);
-  border-radius: 2px;
-  opacity: 0.8;
+  border-radius: var(--radius-full);
+  opacity: 0.9;
+  transition: var(--transition);
 }
 
-/* Apple HIG 分组标题 - 功能层元素 */
+h1:hover::after, h2:hover::after {
+  width: clamp(60px, 12vw, 120px);
+  opacity: 1;
+}
+
+/* Apple 2024 分组标题 - 增强功能层次感 */
 .group-title {
   position: relative;
-  padding: 18px 24px;
-  margin-bottom: 24px;
-  /* 使用 Liquid Glass 效果突出功能性 */
-  background: var(--liquid-glass-bg) !important;
-  backdrop-filter: var(--liquid-glass-backdrop) !important;
-  border: 1px solid var(--liquid-glass-border) !important;
-  border-radius: var(--border-radius);
-  box-shadow: var(--depth-1) !important;
-  transition: var(--transition);
+  padding: clamp(16px, 3vw, 24px) clamp(20px, 4vw, 32px);
+  margin-bottom: clamp(20px, 3vw, 32px);
+  
+  /* Apple 2024 Liquid Glass 材质 */
+  background: var(--glass-regular) !important;
+  backdrop-filter: var(--backdrop-regular) !important;
+  border: 1px solid var(--border-thin) !important;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-2) !important;
+  transition: all var(--duration-normal) var(--ease-out);
   overflow: hidden;
   
-  color: var(--vibrant-secondary) !important;
-  font-weight: 600 !important;
-  font-size: 1.1em !important;
+  /* Apple 2024 文本样式 */
+  color: var(--system-purple) !important;
+  font-weight: 700 !important;
+  font-size: clamp(1rem, 2.5vw, 1.25rem) !important;
+  letter-spacing: -0.01em;
   
-  /* 增强层次感 */
+  /* 增强层次感和可访问性 */
   z-index: 2 !important;
+  cursor: pointer;
+  
+  /* Apple 2024 焦点状态 */
+  outline: none;
 }
 
+/* Apple 2024 分组标题交互效果 */
 .group-title::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 3px;
   background: var(--accent-gradient);
   opacity: 0;
-  transition: var(--transition);
+  transition: all var(--duration-normal) var(--ease-out);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
 
 .group-title:hover {
-  background: var(--glass-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
+  background: var(--glass-thick) !important;
+  transform: translateY(-3px) scale(1.005);
+  box-shadow: var(--shadow-3) !important;
+  border-color: var(--border-regular) !important;
 }
 
 .group-title:hover::before {
   opacity: 1;
 }
 
-/* 服务卡片样式优化 */
-.service-card, .bookmark-card {
-  position: relative;
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--border-radius-small);
-  padding: 20px;
-  margin-bottom: 16px;
-  transition: var(--transition);
-  overflow: hidden;
-  cursor: pointer;
+.group-title:focus-visible {
+  outline: 2px solid var(--system-blue);
+  outline-offset: 2px;
 }
 
+/* Apple 2024 服务卡片 - 标准材质层 */
+.service-card, .bookmark-card {
+  position: relative;
+  background: var(--glass-regular);
+  backdrop-filter: var(--backdrop-regular);
+  border: 1px solid var(--border-thin);
+  border-radius: var(--radius-xl);
+  padding: clamp(16px, 3vw, 24px);
+  margin-bottom: clamp(12px, 2vw, 20px);
+  transition: all var(--duration-normal) var(--ease-out);
+  overflow: hidden;
+  cursor: pointer;
+  
+  /* Apple 2024 卡片阴影 */
+  box-shadow: var(--shadow-2);
+  
+  /* Apple 2024 内容布局 */
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.5vw, 12px);
+  
+  /* 增强可访问性 */
+  outline: none;
+}
+
+/* Apple 2024 卡片光泽效果 */
 .service-card::before, .bookmark-card::before {
   content: '';
   position: absolute;
@@ -164,172 +273,176 @@ h1::after, h2::after {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-  transform: translateX(-100%);
-  transition: transform 0.6s;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    transparent 50%, 
+    rgba(255, 255, 255, 0.05) 100%);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Apple 2024 卡片悬停效果 - 增强材质厚度 */
+.service-card:hover, .bookmark-card:hover {
+  background: var(--glass-thick);
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: var(--shadow-4);
+  border-color: var(--border-regular);
 }
 
 .service-card:hover::before, .bookmark-card:hover::before {
-  transform: translateX(100%);
+  opacity: 1;
 }
 
-.service-card:hover, .bookmark-card:hover {
-  background: var(--glass-hover);
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: var(--shadow-hover);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
+/* Apple 2024 卡片激活效果 */
 .service-card:active, .bookmark-card:active {
-  transform: translateY(-2px) scale(1.01);
-  box-shadow: var(--shadow-active);
+  transform: translateY(-3px) scale(1.005);
+  box-shadow: var(--shadow-2);
+  transition: all var(--duration-fast) var(--ease-in);
 }
 
-/* 图标样式优化 */
+/* Apple 2024 卡片焦点状态 */
+.service-card:focus-visible, .bookmark-card:focus-visible {
+  outline: 2px solid var(--system-blue);
+  outline-offset: 2px;
+  transform: translateY(-3px);
+}
+
+/* Apple 2024 图标系统 - 增强视觉层次 */
 .service-icon, .bookmark-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--border-radius-small);
-  margin-bottom: 12px;
-  transition: var(--transition);
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  width: clamp(40px, 8vw, 56px);
+  height: clamp(40px, 8vw, 56px);
+  border-radius: var(--radius-lg);
+  margin-bottom: 0; /* 移除底部边距，使用 flex gap */
+  transition: all var(--duration-normal) var(--ease-spring);
+  filter: drop-shadow(var(--shadow-1));
+  
+  /* Apple 2024 图标优化 */
+  object-fit: cover;
+  background: var(--glass-thin);
+  padding: 2px;
+  
+  /* 增强可访问性 */
+  z-index: 2;
 }
 
+/* Apple 2024 图标悬停效果 - 更自然的动画 */
 .service-card:hover .service-icon,
 .bookmark-card:hover .bookmark-icon {
-  transform: scale(1.1) rotate(5deg);
-  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+  transform: scale(1.08) rotate(2deg);
+  filter: drop-shadow(var(--shadow-3));
+  background: var(--glass-thick);
 }
 
-/* 状态指示器样式 */
+/* Apple 2024 状态指示器 - 更精确的设计 */
 .status-indicator {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--success-gradient);
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
-  animation: pulse 2s infinite;
+  top: clamp(12px, 2vw, 16px);
+  right: clamp(12px, 2vw, 16px);
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--system-green);
+  box-shadow: 0 0 0 2px var(--glass-regular), var(--shadow-1);
+  animation: status-pulse 3s ease-in-out infinite;
+  z-index: 3;
 }
 
 .status-indicator.offline {
-  background: var(--warning-gradient);
+  background: var(--system-red);
+  animation: none;
 }
 
-@keyframes pulse {
+.status-indicator.warning {
+  background: var(--system-orange);
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+/* Apple 2024 动画系统 - 更自然的脉冲效果 */
+@keyframes status-pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+    transform: scale(1);
+    opacity: 1;
   }
-  70% {
-    box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-.group-title::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--primary-gradient);
-  border-radius: 16px 16px 0 0;
+/* Apple 2024 呼吸光效 */
+@keyframes breathing-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 2px var(--glass-regular), var(--shadow-1);
+  }
+  50% {
+    box-shadow: 0 0 0 4px var(--glass-thick), var(--shadow-2);
+  }
 }
 
-/* Apple HIG 标准材质 - 内容层卡片 */
-.service-card, .bookmark-card {
-  /* 使用标准材质而非 Liquid Glass（遵循 HIG 指导） */
-  background: var(--material-regular) !important;
-  backdrop-filter: var(--liquid-glass-backdrop) !important;
-  border: 1px solid var(--liquid-glass-border) !important;
-  border-radius: var(--border-radius) !important;
-  box-shadow: var(--depth-2) !important;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  overflow: hidden !important;
-  position: relative !important;
-  
-  /* 增强对比度和可读性 */
-  color: rgba(255, 255, 255, 0.9) !important;
+/* Apple 2024 渐入动画 */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Apple HIG 材质层次效果 */
-.service-card::before, .bookmark-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  /* 模拟光线反射的渐变 */
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.15) 0%, 
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0.02) 100%);
-  opacity: 0;
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-  z-index: 1;
-  
-  /* 增强玻璃质感 */
-  backdrop-filter: blur(1px);
-}
-
-/* Apple HIG 悬停效果 - 增强材质厚度 */
-.service-card:hover, .bookmark-card:hover {
-  transform: translateY(-4px) scale(1.01) !important;
-  box-shadow: var(--depth-3) !important;
-  background: var(--material-thick) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  
-  /* 增强活力色彩 */
-  color: rgba(255, 255, 255, 1) !important;
-}
-
-.service-card:hover::before, .bookmark-card:hover::before {
-  opacity: 0.1;
-}
-
-/* Apple HIG 图标系统 - 活力效果 */
-.service-icon, .bookmark-icon {
-  border-radius: 12px !important;
-  box-shadow: var(--depth-1) !important;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  opacity: 0.9 !important;
-  
-  /* 增强图标可见性 */
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2)) !important;
-}
-
-.service-card:hover .service-icon,
-.bookmark-card:hover .bookmark-icon {
-  transform: scale(1.05) !important;
-  box-shadow: var(--depth-2) !important;
-  opacity: 1 !important;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25)) !important;
-}
-
-/* Apple HIG 文字活力系统 */
+/* Apple 2024 文本系统 - 清晰的层次感 */
 .service-name, .bookmark-name {
-  font-weight: 500 !important;
-  font-size: 14px !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
-  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  font-weight: 600 !important;
+  font-size: clamp(0.875rem, 2vw, 1rem) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  text-shadow: none !important; /* 移除阴影，保持简洁 */
+  transition: all var(--duration-normal) var(--ease-out) !important;
   
-  /* 增强可读性 */
+  /* Apple 2024 文本优化 */
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
+  letter-spacing: -0.005em;
+  line-height: 1.4;
+  
+  /* 增强可访问性 */
+  z-index: 2;
+  position: relative;
 }
 
 .service-card:hover .service-name,
 .bookmark-card:hover .bookmark-name {
-  color: var(--vibrant-primary) !important;
+  color: var(--system-blue) !important;
+  transform: translateY(-1px);
+}
+
+/* Apple 2024 描述文本 */
+.service-description, .bookmark-description {
+  font-weight: 400;
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.3;
+  letter-spacing: -0.003em;
+  transition: all var(--duration-normal) var(--ease-out);
+  
+  /* 限制行数 */
+  display: -webkit-box;
+  /* 使用标准属性和 webkit 前缀实现多行文本截断 */
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.service-card:hover .service-description,
+.bookmark-card:hover .service-description {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .service-description {
@@ -386,272 +499,302 @@ h1::after, h2::after {
 
 /* Apple HIG 小部件 - 标准材质内容层 */
 .widget {
-  background: var(--material-regular) !important;
-  backdrop-filter: var(--liquid-glass-backdrop) !important;
-  border: 1px solid var(--liquid-glass-border) !important;
-  border-radius: var(--border-radius) !important;
-  box-shadow: var(--depth-2) !important;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+/* Apple 2024 小部件系统 */
+.widget {
+  background: var(--glass-regular) !important;
+  backdrop-filter: var(--backdrop-regular) !important;
+  border: 1px solid var(--border-thin) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-2) !important;
+  transition: all var(--duration-normal) var(--ease-out) !important;
   
-  /* 内容层特性 */
-  color: rgba(255, 255, 255, 0.9) !important;
+  /* Apple 2024 内容层特性 */
+  color: rgba(255, 255, 255, 0.92) !important;
+  padding: clamp(16px, 3vw, 24px);
+  
+  /* 增强可访问性 */
+  outline: none;
 }
 
 .widget:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: var(--depth-3) !important;
-  background: var(--material-thick) !important;
+  transform: translateY(-4px) scale(1.005) !important;
+  box-shadow: var(--shadow-3) !important;
+  background: var(--glass-thick) !important;
   color: rgba(255, 255, 255, 1) !important;
+  border-color: var(--border-regular) !important;
 }
 
-/* Apple HIG 滚动条 - 标准材质 */
+.widget:focus-visible {
+  outline: 2px solid var(--system-blue);
+  outline-offset: 2px;
+}
+
+/* Apple 2024 滚动条系统 - 更精致的设计 */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: transparent;
-  border-radius: 3px;
+  border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 3px;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--glass-thick);
+  border-radius: var(--radius-full);
+  transition: all var(--duration-normal) var(--ease-out);
+  border: 1px solid var(--border-ultra-thin);
+  
+  /* Apple 2024 滚动条阴影 */
+  box-shadow: var(--shadow-1);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--glass-ultra-thick);
+  border-color: var(--border-thin);
+  box-shadow: var(--shadow-2);
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: var(--vibrant-primary);
-  border-color: var(--vibrant-primary);
+  background: var(--system-blue);
+  border-color: var(--system-blue);
+  box-shadow: var(--shadow-1);
 }
 
-/* 响应式设计 */
+/* Apple 2024 滚动条角落 */
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Apple 2024 响应式设计 - 适配所有设备 */
+@media (max-width: 1024px) {
+  .container {
+    padding: clamp(12px, 3vw, 20px);
+    gap: clamp(16px, 2.5vw, 24px);
+  }
+}
+
 @media (max-width: 768px) {
   .container {
-    padding: 10px;
+    padding: 16px;
+    gap: 16px;
   }
   
   .grid-container {
-    gap: 15px !important;
-    padding: 15px !important;
+    gap: 12px !important;
+    padding: 12px !important;
   }
   
   .service-card, .bookmark-card {
-    border-radius: 16px !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 16px !important;
   }
   
   .group-title {
     padding: 12px 16px;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
+    font-size: 1rem !important;
+  }
+  
+  /* 移动端图标优化 */
+  .service-icon, .bookmark-icon {
+    width: 40px !important;
+    height: 40px !important;
   }
 }
 
-/* 加载动画 */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+    gap: 12px;
   }
-  to {
+  
+  .service-card, .bookmark-card {
+    padding: 12px !important;
+    margin-bottom: 8px !important;
+  }
+}
+
+/* Apple 2024 加载动画系统 - 更自然的进入效果 */
+@keyframes apple-fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+  100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 .service-card, .bookmark-card, .widget {
-  animation: fadeInUp 0.6s ease-out;
+  animation: apple-fade-in-up var(--duration-slower) var(--ease-out);
 }
 
-/* 特殊效果 */
-.service-card:nth-child(odd), .bookmark-card:nth-child(odd) {
-  animation-delay: 0.1s;
+/* Apple 2024 交错动画 - 更精致的时序 */
+.service-card:nth-child(1), .bookmark-card:nth-child(1) {
+  animation-delay: 0ms;
 }
 
-.service-card:nth-child(even), .bookmark-card:nth-child(even) {
-  animation-delay: 0.2s;
+.service-card:nth-child(2), .bookmark-card:nth-child(2) {
+  animation-delay: 100ms;
 }
 
-/* Apple HIG 主题切换按钮 - Liquid Glass 功能层 */
+.service-card:nth-child(3), .bookmark-card:nth-child(3) {
+  animation-delay: 200ms;
+}
+
+.service-card:nth-child(4), .bookmark-card:nth-child(4) {
+  animation-delay: 300ms;
+}
+
+.service-card:nth-child(n+5), .bookmark-card:nth-child(n+5) {
+  animation-delay: 400ms;
+}
+
+/* Apple 2024 主题切换按钮 - 功能层设计 */
 .theme-toggle {
-  background: var(--liquid-glass-bg) !important;
-  backdrop-filter: var(--liquid-glass-backdrop) !important;
-  border: 1px solid var(--liquid-glass-border) !important;
-  border-radius: 50% !important;
-  box-shadow: var(--depth-2) !important;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  background: var(--glass-thick) !important;
+  backdrop-filter: var(--backdrop-regular) !important;
+  border: 1px solid var(--border-regular) !important;
+  border-radius: var(--radius-full) !important;
+  box-shadow: var(--shadow-2) !important;
+  transition: all var(--duration-normal) var(--ease-out) !important;
   
-  /* 功能层特性 */
+  /* Apple 2024 功能层特性 */
   position: relative !important;
   z-index: 3 !important;
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  padding: clamp(8px, 1.5vw, 12px);
+  
+  /* 增强可访问性 */
+  outline: none;
 }
 
 .theme-toggle:hover {
-  transform: scale(1.05) !important;
-  box-shadow: var(--depth-3) !important;
+  transform: scale(1.08) !important;
+  box-shadow: var(--shadow-3) !important;
   color: rgba(255, 255, 255, 1) !important;
-  background: var(--liquid-glass-bg) !important;
+  background: var(--glass-ultra-thick) !important;
+  border-color: var(--border-thick) !important;
 }
 
-.theme-toggle:focus {
-  outline: 2px solid var(--vibrant-primary) !important;
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--system-blue) !important;
   outline-offset: 2px !important;
 }
 
-/* Apple HIG 状态指示器 - 活力色彩系统 */
-.status-indicator {
-  position: relative;
+.theme-toggle:active {
+  transform: scale(1.02) !important;
+  transition: all var(--duration-fast) var(--ease-in) !important;
 }
 
-.status-indicator::after {
-  content: '';
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  width: 10px;
-  height: 10px;
-  background: var(--vibrant-green);
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 
-    0 0 0 1px rgba(52, 199, 89, 0.3),
-    var(--depth-1);
-  animation: apple-pulse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+/* Apple 2024 类别样式 - 使用系统色彩 */
+.category-ai .service-card,
+.category-ai .bookmark-card {
+  border-left: 3px solid var(--system-blue);
 }
 
-.status-indicator.offline::after {
-  background: var(--vibrant-red);
-  box-shadow: 
-    0 0 0 1px rgba(255, 69, 58, 0.3),
-    var(--depth-1);
+.category-ai .service-card:hover,
+.category-ai .bookmark-card:hover {
+  box-shadow: var(--shadow-3), 0 0 0 1px var(--system-blue);
 }
 
-@keyframes apple-pulse {
-  0% {
-    box-shadow: 
-      0 0 0 0 rgba(52, 199, 89, 0.4),
-      var(--depth-1);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 
-      0 0 0 6px rgba(52, 199, 89, 0),
-      var(--depth-2);
-    transform: scale(1.02);
-  }
-  100% {
-    box-shadow: 
-      0 0 0 0 rgba(52, 199, 89, 0),
-      var(--depth-1);
-    transform: scale(1);
-  }
+.category-dev .service-card,
+.category-dev .bookmark-card {
+  border-left: 3px solid var(--system-purple);
 }
 
-/* 自定义类别样式 */
-.category-ai .service-card::before,
-.category-ai .bookmark-card::before {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.category-dev .service-card:hover,
+.category-dev .bookmark-card:hover {
+  box-shadow: var(--shadow-3), 0 0 0 1px var(--system-purple);
 }
 
-.category-dev .service-card::before,
-.category-dev .bookmark-card::before {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+.category-media .service-card,
+.category-media .bookmark-card {
+  border-left: 3px solid var(--system-cyan);
 }
 
-.category-media .service-card::before,
-.category-media .bookmark-card::before {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+.category-media .service-card:hover,
+.category-media .bookmark-card:hover {
+  box-shadow: var(--shadow-3), 0 0 0 1px var(--system-cyan);
 }
 
-/* 性能优化 */
+.category-tools .service-card,
+.category-tools .bookmark-card {
+  border-left: 3px solid var(--system-orange);
+}
+
+.category-tools .service-card:hover,
+.category-tools .bookmark-card:hover {
+  box-shadow: var(--shadow-3), 0 0 0 1px var(--system-orange);
+}
+
+/* Apple 2024 性能优化 */
 * {
   will-change: auto;
 }
 
-.service-card, .bookmark-card {
+.service-card, .bookmark-card, .widget {
   contain: layout style paint;
+  transform: translateZ(0); /* 启用硬件加速 */
 }
 
-/* 优化的鼠标效果样式 */
+/* Apple 2024 自定义光标系统 - 仅在支持的设备上启用 */
 @media (hover: hover) and (pointer: fine) {
-  body {
-    cursor: none;
-  }
-}
-
-/* 移动端恢复默认光标 */
-@media (hover: none) or (pointer: coarse) {
-  body {
-    cursor: auto !important;
+  .apple-custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    pointer-events: none;
+    z-index: 10000;
+    background: var(--glass-thick);
+    border: 1px solid var(--border-thin);
+    backdrop-filter: var(--backdrop-light);
+    transition: all var(--duration-fast) var(--ease-out);
+    will-change: transform, opacity;
+    box-shadow: var(--shadow-1);
+    mix-blend-mode: screen;
   }
   
-  .custom-cursor {
-    display: none !important;
+  .apple-custom-cursor.hover {
+    transform: scale(1.5);
+    background: var(--system-blue);
+    border-color: var(--system-blue);
   }
 }
 
-/* 粒子画布优化 */
+/* Apple 2024 移动端优化 */
+@media (hover: none) or (pointer: coarse) {
+  .apple-custom-cursor {
+    display: none !important;
+  }
+  
+  /* 移动端触摸反馈 */
+  .service-card:active, .bookmark-card:active {
+    transform: scale(0.98) !important;
+    transition: transform var(--duration-fast) var(--ease-in) !important;
+  }
+}
+
+/* Apple 2024 粒子系统优化 */
 canvas[style*="z-index: 9999"] {
   z-index: 9999 !important;
   pointer-events: none !important;
   position: fixed !important;
   will-change: auto;
+  opacity: 0.6; /* 降低粒子透明度，增强内容可读性 */
 }
 
-/* 主要内容区域层级 */
+/* Apple 2024 内容层级管理 */
 #__next, main, .container {
   position: relative;
   z-index: 1;
 }
 
-/* 自定义光标样式 */
-.custom-cursor {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  mix-blend-mode: screen;
-  transition: transform 0.1s ease, opacity 0.2s ease;
-  will-change: transform, left, top;
-}
-
-/* 页面加载动画已在上方定义，此处删除重复定义 */
-
-.service-card, .bookmark-card {
-  animation: fadeInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  animation-delay: calc(var(--animation-order, 0) * 0.05s);
-}
-
-/* 增强的悬停效果 */
-.service-card:hover, .bookmark-card:hover {
-  background: rgba(255, 255, 255, 0.15) !important;
-}
-
-/* 渐变边框动画 - 优化频率和强度 */
-@keyframes borderGlow {
-  0%, 100% {
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
-  }
-  50% {
-    border-color: rgba(102, 126, 234, 0.4);
-    box-shadow: 0 0 20px 0 rgba(102, 126, 234, 0.1);
-  }
-}
-
-.service-card:hover, .bookmark-card:hover {
-  animation: borderGlow 3s ease-in-out infinite;
-}
-
-/* 背景粒子容器 - 移除 z-index 以避免与 canvas 冲突 */
+/* Apple 2024 背景粒子容器 */
 .particles-container {
   position: fixed;
   top: 0;
@@ -659,58 +802,39 @@ canvas[style*="z-index: 9999"] {
   width: 100%;
   height: 100%;
   pointer-events: none;
+  z-index: 0;
+  opacity: 0.4; /* 进一步降低背景干扰 */
 }
 
-/* 增强的文字效果 */
-.service-name:hover, .bookmark-name:hover {
-  background: var(--primary-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transition: all 0.3s ease;
-}
-
-/* 性能优化 */
-.service-card, .bookmark-card, .widget {
-  contain: layout style paint;
-  will-change: auto;
-}
-
-/* 减少重绘的动画 */
+/* Apple 2024 性能优化 - 智能 will-change 管理 */
 .service-card:hover, .bookmark-card:hover {
-  will-change: transform, box-shadow;
+  will-change: transform, box-shadow, background;
 }
 
 .service-card:not(:hover), .bookmark-card:not(:hover) {
   will-change: auto;
 }
 
-/* 响应式优化 - 符合移动端 UX 规范 */
+/* Apple 2024 移动端响应式优化 */
 @media (max-width: 768px) {
-  /* 移动端简化动画 */
+  /* 移动端简化动画 - 使用 Apple 系统变量 */
   .service-card, .bookmark-card {
-    animation-duration: 0.2s !important;
-    animation-delay: calc(var(--animation-order, 0) * 0.02s) !important;
+    animation-duration: var(--duration-fast) !important;
+    animation-delay: calc(var(--animation-order, 0) * 20ms) !important;
   }
   
   .service-card:hover, .bookmark-card:hover {
-    transform: translateY(-2px) scale(1.005) !important;
-    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform: translateY(-1px) scale(1.02) !important;
+    transition: transform var(--duration-fast) var(--ease-out) !important;
   }
   
-  /* 移动端禁用视差效果 */
+  /* 移动端禁用复杂变换效果 */
   .service-card[style*="transform"], .bookmark-card[style*="transform"] {
     transform: none !important;
   }
-  
-  /* 移动端优化触摸反馈 */
-  .service-card:active, .bookmark-card:active {
-    transform: scale(0.98) !important;
-    transition: transform 0.1s ease !important;
-  }
 }
 
-/* 无障碍设计 - 减少动画影响 */
+/* Apple 2024 无障碍设计 - 动画减少偏好 */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -723,40 +847,68 @@ canvas[style*="z-index: 9999"] {
     transform: none !important;
   }
   
-  /* 保留基本的焦点指示 */
-  .service-card:focus, .bookmark-card:focus {
-    outline: 2px solid #667eea !important;
+  /* 保留重要的焦点指示 */
+  .service-card:focus-visible, .bookmark-card:focus-visible {
+    outline: 2px solid var(--system-blue) !important;
     outline-offset: 2px !important;
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.2) !important;
   }
 }
 
-/* 添加缺失的动画关键帧 */
-@keyframes ripple {
-  0% {
-    transform: scale(0);
-    opacity: 1;
+/* Apple 2024 高对比度模式支持 */
+@media (prefers-contrast: high) {
+  .service-card, .bookmark-card {
+    border: 2px solid var(--system-blue);
+    background: rgba(255, 255, 255, 0.95) !important;
   }
-  100% {
-    transform: scale(4);
-    opacity: 0;
+  
+  .service-name, .bookmark-name {
+    color: #000 !important;
+    font-weight: 600;
   }
-}
-
-@keyframes glow-pulse {
-  0% {
-    opacity: 0.1;
-    filter: blur(15px);
-  }
-  100% {
-    opacity: 0.3;
-    filter: blur(10px);
+  
+  .service-description, .bookmark-description {
+    color: #333 !important;
   }
 }
 
-/* 焦点管理优化 */
+/* Apple 2024 暗色模式偏好 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-primary: rgba(255, 255, 255, 0.95);
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --glass-regular: rgba(255, 255, 255, 0.08);
+    --glass-thick: rgba(255, 255, 255, 0.12);
+    --backdrop-regular: blur(20px) saturate(180%);
+  }
+}
+
+/* Apple 2024 焦点管理系统 */
 .service-card:focus-visible, .bookmark-card:focus-visible {
-  outline: 2px solid #667eea;
+  outline: 2px solid var(--system-blue);
   outline-offset: 2px;
-  transform: translateY(-2px);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(-1px);
+  transition: all var(--duration-normal) var(--ease-out);
+  box-shadow: var(--shadow-3), 0 0 0 4px rgba(0, 122, 255, 0.2);
+}
+
+/* Apple 2024 键盘导航优化 */
+.service-card:focus-visible .service-icon,
+.bookmark-card:focus-visible .bookmark-icon {
+  transform: scale(1.05);
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+/* Apple 2024 触摸设备优化 */
+@media (pointer: coarse) {
+  .service-card, .bookmark-card {
+    min-height: 44px; /* Apple 推荐的最小触摸目标 */
+    padding: clamp(12px, 3vw, 16px);
+  }
+  
+  .service-icon, .bookmark-icon {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
 }
