@@ -226,7 +226,7 @@ h1:hover::after, h2:hover::after {
 
 .group-title:hover {
   background: var(--glass-thick) !important;
-  transform: translateY(-3px) scale(1.005);
+  transform: translateY(-1px);
   box-shadow: var(--shadow-3) !important;
   border-color: var(--border-regular) !important;
 }
@@ -283,11 +283,11 @@ h1:hover::after, h2:hover::after {
   z-index: 1;
 }
 
-/* Apple 2024 卡片悬停效果 - 增强材质厚度 */
+/* Apple 2024 卡片悬停效果 - 简化设计 */
 .service-card:hover, .bookmark-card:hover {
   background: var(--glass-thick);
-  transform: translateY(-6px) scale(1.015);
-  box-shadow: var(--shadow-4);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-3);
   border-color: var(--border-regular);
 }
 
@@ -297,7 +297,7 @@ h1:hover::after, h2:hover::after {
 
 /* Apple 2024 卡片激活效果 */
 .service-card:active, .bookmark-card:active {
-  transform: translateY(-3px) scale(1.005);
+  transform: translateY(-1px);
   box-shadow: var(--shadow-2);
   transition: all var(--duration-fast) var(--ease-in);
 }
@@ -306,7 +306,7 @@ h1:hover::after, h2:hover::after {
 .service-card:focus-visible, .bookmark-card:focus-visible {
   outline: 2px solid var(--system-blue);
   outline-offset: 2px;
-  transform: translateY(-3px);
+  transform: translateY(-1px);
 }
 
 /* Apple 2024 图标系统 - 增强视觉层次 */
@@ -327,11 +327,11 @@ h1:hover::after, h2:hover::after {
   z-index: 2;
 }
 
-/* Apple 2024 图标悬停效果 - 更自然的动画 */
+/* Apple 2024 图标悬停效果 - 简化动画 */
 .service-card:hover .service-icon,
 .bookmark-card:hover .bookmark-icon {
-  transform: scale(1.08) rotate(2deg);
-  filter: drop-shadow(var(--shadow-3));
+  transform: scale(1.05);
+  filter: drop-shadow(var(--shadow-2));
   background: var(--glass-thick);
 }
 
@@ -419,7 +419,6 @@ h1:hover::after, h2:hover::after {
 .service-card:hover .service-name,
 .bookmark-card:hover .bookmark-name {
   color: var(--system-blue) !important;
-  transform: translateY(-1px);
 }
 
 /* Apple 2024 描述文本 */
@@ -517,7 +516,7 @@ h1:hover::after, h2:hover::after {
 }
 
 .widget:hover {
-  transform: translateY(-4px) scale(1.005) !important;
+  transform: translateY(-2px) !important;
   box-shadow: var(--shadow-3) !important;
   background: var(--glass-thick) !important;
   color: rgba(255, 255, 255, 1) !important;

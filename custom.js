@@ -961,294 +961,49 @@
     
     // 旧版主题切换函数已被 Apple 2024 版本替代
     
-    // Apple 2024 鼠标粒子效果系统
-    function addAppleMouseParticles() {
-        // Apple 2024 设备性能检测
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        const isLowPerformance = navigator.hardwareConcurrency < 4;
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        
-        // Apple风格的性能优化 - 移动端或低性能设备禁用粒子效果
-        if (isMobile || isLowPerformance || prefersReducedMotion) {
-            console.log('🎯 Apple 2024: 粒子效果已禁用（性能优化或用户偏好）');
-            return;
-        }
-        
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
-        
-        // 设置画布样式
-        canvas.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: screen;
-            opacity: 0.6;
-        `;
-        
-        document.body.appendChild(canvas);
-        
-        // 性能配置
-        const config = {
-            maxParticles: 25,
-            particleSpeed: 1,
-            particleLife: 60,
-            createRate: 3,
-            mouseMoveThrottle: 16 // 约60fps
-        };
-        
-        // 调整画布大小（防抖）
-        let resizeTimeout;
-        function resizeCanvas() {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                const dpr = window.devicePixelRatio || 1;
-                const rect = canvas.getBoundingClientRect();
-                
-                canvas.width = rect.width * dpr;
-                canvas.height = rect.height * dpr;
-                
-                ctx.scale(dpr, dpr);
-                canvas.style.width = rect.width + 'px';
-                canvas.style.height = rect.height + 'px';
-            }, 100);
-        }
-        
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas, { passive: true });
-        
-        // 粒子池优化
-        const particles = [];
-        const particlePool = [];
-        
-        // 鼠标位置和状态
-        let mouse = { x: 0, y: 0, isMoving: false };
-        let lastMouseTime = 0;
-        
-        // 优化的粒子类
-        class Particle {
-            constructor() {
-                this.reset(0, 0);
-            }
-            
-            reset(x, y) {
-                this.x = x;
-                this.y = y;
-                this.vx = (Math.random() - 0.5) * config.particleSpeed;
-                this.vy = (Math.random() - 0.5) * config.particleSpeed;
-                this.life = config.particleLife;
-                this.maxLife = config.particleLife;
-                this.size = Math.random() * 2 + 1;
-                this.hue = Math.random() * 60 + 200;
-                this.active = true;
-            }
-            
-            update() {
-                if (!this.active) return;
-                
-                this.x += this.vx;
-                this.y += this.vy;
-                this.life--;
-                this.vx *= 0.98;
-                this.vy *= 0.98;
-                
-                if (this.life <= 0) {
-                    this.active = false;
-                }
-            }
-            
-            draw() {
-                if (!this.active) return;
-                
-                const alpha = this.life / this.maxLife;
-                const size = this.size * alpha;
-                
-                ctx.globalAlpha = alpha * 0.8;
-                ctx.fillStyle = `hsl(${this.hue}, 70%, 60%)`;
-                
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-        
-        // 获取粒子（对象池）
-        function getParticle(x, y) {
-            let particle = particlePool.pop();
-            if (!particle) {
-                particle = new Particle();
-            }
-            particle.reset(x, y);
-            return particle;
-        }
-        
-        // 回收粒子
-        function recycleParticle(particle) {
-            particle.active = false;
-            particlePool.push(particle);
-        }
-        
-        // 创建粒子（限制频率）
-        let createCounter = 0;
-        function createParticles(x, y) {
-            if (particles.length >= config.maxParticles) return;
-            
-            createCounter++;
-            if (createCounter % config.createRate === 0) {
-                particles.push(getParticle(x, y));
-            }
-        }
-        
-        // 优化的动画循环
-        let animationId;
-        let lastFrameTime = 0;
-        const targetFPS = 60;
-        const frameInterval = 1000 / targetFPS;
-        
-        function animate(currentTime) {
-            if (currentTime - lastFrameTime < frameInterval) {
-                animationId = requestAnimationFrame(animate);
-                return;
-            }
-            
-            lastFrameTime = currentTime;
-            
-            // 清除画布
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // 批量更新和绘制粒子
-            for (let i = particles.length - 1; i >= 0; i--) {
-                const particle = particles[i];
-                particle.update();
-                
-                if (particle.active) {
-                    particle.draw();
-                } else {
-                    // 回收死亡粒子
-                    recycleParticle(particle);
-                    particles.splice(i, 1);
-                }
-            }
-            
-            animationId = requestAnimationFrame(animate);
-        }
-        
-        // 节流的鼠标移动事件
-        let mouseMoveTimeout;
-        function handleMouseMove(e) {
-            const now = Date.now();
-            if (now - lastMouseTime < config.mouseMoveThrottle) return;
-            
-            lastMouseTime = now;
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-            mouse.isMoving = true;
-            
-            createParticles(mouse.x, mouse.y);
-            
-            // 重置移动状态
-            clearTimeout(mouseMoveTimeout);
-            mouseMoveTimeout = setTimeout(() => {
-                mouse.isMoving = false;
-            }, 100);
-        }
-        // 绑定优化的鼠标事件
-        document.addEventListener('mousemove', handleMouseMove, { passive: true });
-        
-        // 页面可见性 API 优化
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                if (animationId) {
-                    cancelAnimationFrame(animationId);
-                }
-            } else {
-                animate(performance.now());
-            }
-        });
-        
-        // 启动动画
-        animate(performance.now());
-        
-        // 清理函数
-        return () => {
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
-            document.removeEventListener('mousemove', handleMouseMove);
-            if (canvas.parentNode) {
-                canvas.parentNode.removeChild(canvas);
-            }
-        };
-    }
-    
-    // Apple 2024 自定义光标系统
-    function addAppleCustomCursor() {
-        // Apple 2024 设备检测和用户偏好
+    // Apple 2024 简化的交互反馈系统
+    function addAppleInteractionFeedback() {
+        // 设备检测和用户偏好
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         
-        if (isMobile || prefersReducedMotion) {
-            console.log('🖱️ Apple 2024: 自定义光标已禁用（移动设备或用户偏好）');
+        if (prefersReducedMotion) {
+            console.log('✨ Apple 2024: 交互反馈已简化（用户偏好减少动画）');
             return;
         }
         
-        const cursor = document.createElement('div');
-        cursor.className = 'apple-custom-cursor';
-        cursor.style.cssText = `
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, ${APPLE_DESIGN_TOKENS.COLORS.SYSTEM_BLUE}60 0%, ${APPLE_DESIGN_TOKENS.COLORS.SYSTEM_PURPLE}30 70%, transparent 100%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            mix-blend-mode: screen;
-            transition: transform ${APPLE_DESIGN_TOKENS.TIMING.FAST} ${APPLE_DESIGN_TOKENS.EASING.EASE_OUT};
-            opacity: 0;
-            will-change: transform, opacity;
-        `;
+        // 为交互元素添加微妙的反馈效果
+        const interactiveElements = document.querySelectorAll('.service-card, .bookmark-card, button, a, [role="button"]');
         
-        document.body.appendChild(cursor);
-        
-        // Apple 风格的光标移动优化
-        function updateCursor(e) {
-            cursor.style.transform = `translate3d(${e.clientX - 10}px, ${e.clientY - 10}px, 0)`;
-            cursor.style.opacity = '1';
-        }
-        
-        document.addEventListener('mousemove', updateCursor, { passive: true });
-        
-        // 悬停效果优化
-        const interactiveElements = '.service-card, .bookmark-card, button, a, [role="button"]';
-        
-        document.addEventListener('mouseenter', (e) => {
-            if (e.target.matches(interactiveElements)) {
-                cursor.style.transform += ' scale(1.5)';
-                cursor.style.background = `radial-gradient(circle, ${APPLE_DESIGN_TOKENS.COLORS.SYSTEM_BLUE}80 0%, ${APPLE_DESIGN_TOKENS.COLORS.SYSTEM_TEAL}40 70%, transparent 100%)`;
+        interactiveElements.forEach(element => {
+            // 添加触摸反馈（仅限移动设备）
+            if (isMobile) {
+                element.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                    this.style.transition = 'transform 0.1s ease-out';
+                }, { passive: true });
+                
+                element.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                }, { passive: true });
             }
-        }, true);
-        
-        document.addEventListener('mouseleave', (e) => {
-            if (e.target.matches(interactiveElements)) {
-                cursor.style.transform = cursor.style.transform.replace(' scale(1.5)', '');
-                cursor.style.background = `radial-gradient(circle, ${APPLE_DESIGN_TOKENS.COLORS.SYSTEM_BLUE}60 0%, ${APPLE_DESIGN_TOKENS.COLORS.SYSTEM_PURPLE}30 70%, transparent 100%)`;
-            }
-        }, true);
-        
-        // 鼠标离开页面时隐藏光标
-        document.addEventListener('mouseleave', () => {
-            cursor.style.opacity = '0';
+            
+            // 键盘导航反馈
+            element.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    this.style.transform = 'scale(0.98)';
+                    this.style.transition = 'transform 0.1s ease-out';
+                }
+            });
+            
+            element.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    this.style.transform = '';
+                }
+            });
         });
         
-        document.addEventListener('mouseenter', () => {
-            cursor.style.opacity = '1';
-        });
-        
-        console.log('🖱️ Apple 2024: 自定义光标系统已启用');
+        console.log('✨ Apple 2024: 简化交互反馈系统已启用');
     }
      
      // Apple 2024 主题切换系统
@@ -1267,13 +1022,13 @@
     
     // 初始化所有 Apple 2024 功能
     addAppleThemeTransition();
-    addAppleMouseParticles();
-    addAppleCustomCursor();
+    addAppleInteractionFeedback();
     
     // Apple 2024 控制台欢迎信息
     console.log('%c🍎 Apple 2024 Design System', 'color: #007AFF; font-size: 16px; font-weight: bold;');
     console.log('%c✨ 沈孙丰个人主页已加载完成', 'color: #34C759; font-size: 14px;');
     console.log('%c🎯 Apple 2024 设计规范已全面应用', 'color: #FF9500; font-size: 14px;');
     console.log('%c⚡ 性能优化和无障碍功能已启用', 'color: #5856D6; font-size: 14px;');
-    
+    console.log('%c🚀 动态效果已优化，符合 Apple 设计规范', 'color: #AF52DE; font-size: 14px;');
+
 })();
