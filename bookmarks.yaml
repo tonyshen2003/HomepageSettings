@@ -16,12 +16,12 @@
           href: https://juejin.cn/
           description: 技术分享社区
     - CSDN:
-        - icon: mdi-code-tags-#FC5531
+        - icon: si-csdn-#FC5531
           href: https://www.csdn.net/
           description: 中文技术社区
     - Gmail:
         - icon: si-gmail-#EA4335
-          href: https://accounts.google.com/b/0/AddMailService
+          href: https://mail.google.com/
           description: Google 邮箱服务
     - Google Maps:
         - icon: si-googlemaps-#4285F4
@@ -37,11 +37,11 @@
           description: 弹幕视频网站
     - Outlook:
         - icon: si-microsoftoutlook-#0078D4
-          href: https://outlook.live.com/mail/0/
+          href: https://outlook.live.com/mail/
           description: 微软邮箱服务
     - iCloud:
         - icon: si-icloud-#3693F3
-          href: https://www.icloud.com.cn/iclouddrive/
+          href: https://www.icloud.com/
           description: 苹果云存储
     - Canva:
         - icon: si-canva-#00C4CC
@@ -55,7 +55,7 @@
         - icon: si-google-#4285F4
           href: https://www.google.com/
           description: 谷歌搜索
-    - Baidu:
+    - 百度:
         - icon: si-baidu-#2932E1
           href: https://www.baidu.com
           description: 百度搜索

@@ -14,93 +14,91 @@ title: 沈孙丰个人主页
 description: 沈孙丰的个人主页 - 集成常用服务、AI 工具和系统监控
 startUrl: /
 
-# 图标配置
-favicon: https://www.baidu.com/favicon.ico
+# 图标配置 - 使用更现代的favicon
+favicon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/homepage.png
 
 # 主题配置
 theme: dark
 color: slate
 iconStyle: theme
 
-# 背景配置 - 优化的现代渐变背景
+# 状态样式配置 <mcreference link="https://gethomepage.dev/configs/settings/" index="0">0</mcreference>
+statusStyle: "dot" # 使用点状指示器，更简洁
+
+# 快速启动配置 <mcreference link="https://gethomepage.dev/configs/settings/" index="0">0</mcreference>
+quicklaunch:
+  searchDescriptions: true
+  hideInternetSearch: false
+  hideVisitURL: false
+
+# 背景配置 - 优化的现代渐变背景 <mcreference link="https://gethomepage.dev/configs/settings/" index="0">0</mcreference>
 background:
   image: https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=2560&q=80
-  blur: md
-  saturate: 75
-  brightness: 45
-  opacity: 80
+  blur: sm # 减少模糊度，提高可读性
+  saturate: 100 # 增加饱和度
+  brightness: 50 # 适中亮度
+  opacity: 85 # 稍微增加透明度
 
-# 卡片样式配置
-cardBlur: xs
+# 卡片样式配置 <mcreference link="https://gethomepage.dev/configs/settings/" index="0">0</mcreference>
+cardBlur: sm # 增加卡片模糊效果
 
-# 布局配置 - 与 services.yaml 中的实际分组对应
+# 布局配置 - 优化分组布局和图标 <mcreference link="https://gethomepage.dev/configs/settings/" index="0">0</mcreference>
 layout:
   常用服务:
     style: row
     columns: 6
-    icon: mdi-star
+    icon: mdi-star-#FFD700
     header: true
   社交媒体:
     style: row
     columns: 2
-    icon: mdi-account-group
+    icon: mdi-account-group-#E91E63
     header: true
   树莓社:
     style: row
     columns: 4
-    icon: mdi-raspberry-pi
+    icon: mdi-raspberry-pi-#C51162
     header: true
   国际AI服务:
     style: row
     columns: 2
-    icon: mdi-robot
+    icon: mdi-robot-#2196F3
     header: true
   国内AI服务:
     style: row
     columns: 4
-    icon: mdi-brain
+    icon: mdi-brain-#4CAF50
     header: true
   办公协作:
     style: row
     columns: 3
-    icon: mdi-office-building
+    icon: mdi-office-building-#FF9800
     header: true
   系统监控:
     style: row
     columns: 2
-    icon: mdi-monitor-dashboard
+    icon: mdi-monitor-dashboard-#9C27B0
     header: true
 
-# 书签样式配置
+# 书签样式配置 <mcreference link="https://gethomepage.dev/configs/bookmarks/" index="3">3</mcreference>
 bookmarksStyle: icons
 
 # 高级配置选项
-# 禁用搜索引擎（如果不需要）
-# disableCollapse: false
+disableCollapse: false # 允许折叠分组
+useEqualHeights: true # 使用等高卡片，提升视觉一致性
+hideVersion: false # 显示版本信息
 
-# 自定义 CSS 和 JS（如果需要）
-# customCSS: /custom.css
-# customJS: /custom.js
+# 自定义字体配置
+fonts:
+  header: "Inter, -apple-system, BlinkMacSystemFont, sans-serif"
+  body: "Inter, -apple-system, BlinkMacSystemFont, sans-serif"
 
-# 页面刷新间隔（毫秒）
-# refreshInterval: 30000
+# 自定义头部样式
+headerStyle: clean
 
-# 隐藏版本信息
-# hideVersion: false
+# 页面刷新间隔（30秒）
+refreshInterval: 30000
 
-# 启用键盘快捷键
-# useEqualHeights: false
-
-# 自定义字体
-# fonts:
-#   header: "Inter"
-#   body: "Inter"
-
-# 自定义头部
-# headerStyle: clean
-
-# 快速启动配置
-# quicklaunch:
-#   searchDescriptions: true
-#   hideInternetSearch: false
-#   hideVisitURL: false
+# 启用自定义样式和脚本 <mcreference link="https://gethomepage.dev/configs/custom-css-js/" index="4">4</mcreference>
+customCSS: /custom.css
+customJS: /custom.js

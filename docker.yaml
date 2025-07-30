@@ -1,10 +1,33 @@
 ---
-# For configuration options and examples, please see:
-# https://gethomepage.dev/configs/docker/
+# Docker 配置
+# 官方文档: https://gethomepage.dev/configs/docker/
 
-# my-docker:
-#   host: 127.0.0.1
-#   port: 2375
+# 本地 Docker 实例
+local-docker:
+  socket: /var/run/docker.sock
+  # 或者使用 TCP 连接
+  # host: 127.0.0.1
+  # port: 2376
+  # 启用 TLS（如果需要）
+  # tls: true
+  # tlsCert: /path/to/cert.pem
+  # tlsKey: /path/to/key.pem
+  # tlsCa: /path/to/ca.pem
 
-# my-docker:
-#   socket: /var/run/docker.sock
+# 远程 Docker 实例（如果有）
+# remote-docker:
+#   host: remote-docker-host.example.com
+#   port: 2376
+#   tls: true
+#   tlsCert: /path/to/remote-cert.pem
+#   tlsKey: /path/to/remote-key.pem
+#   tlsCa: /path/to/remote-ca.pem
+
+# Docker Swarm 配置（如果使用）
+# swarm-manager:
+#   host: swarm-manager.example.com
+#   port: 2376
+#   tls: true
+#   tlsCert: /path/to/swarm-cert.pem
+#   tlsKey: /path/to/swarm-key.pem
+#   tlsCa: /path/to/swarm-ca.pem

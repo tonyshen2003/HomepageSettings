@@ -1,2 +1,53 @@
 ---
-# sample kubernetes config
+# Kubernetes 集群配置
+mode: cluster # 可选：default, cluster, disabled
+
+# 集群配置
+cluster:
+  # 显示所有命名空间
+  show: true
+  # CPU 和内存使用情况
+  cpu: true
+  memory: true
+  # 显示节点信息
+  showNodes: true
+  # 显示存储信息
+  showStorage: true
+
+# 命名空间配置
+namespaces:
+  - default
+  - kube-system
+  - monitoring
+  - ingress-nginx
+  - cert-manager
+  - homepage
+
+# 资源监控
+resources:
+  # 显示 Pod 状态
+  pods: true
+  # 显示服务状态
+  services: true
+  # 显示部署状态
+  deployments: true
+  # 显示 Ingress 状态
+  ingresses: true
+  # 显示持久卷状态
+  persistentvolumes: true
+  # 显示节点状态
+  nodes: true
+
+# 刷新间隔（毫秒）
+refreshInterval: 10000
+
+# 显示选项
+display:
+  # 显示资源使用图表
+  charts: true
+  # 显示详细信息
+  details: true
+  # 显示事件日志
+  events: true
+  # 最大显示事件数
+  maxEvents: 10

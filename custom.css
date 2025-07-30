@@ -1,27 +1,65 @@
 /* 沈孙丰个人主页 - 现代化美化样式 */
 
-/* 全局样式优化 */
+/* 全局样式优化 - 现代化设计变量 */
 :root {
   --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.1);
-  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+  --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  --warning-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-hover: rgba(255, 255, 255, 0.12);
+  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.18);
+  --shadow-active: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --border-radius: 16px;
+  --border-radius-small: 12px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* 页面整体优化 */
 body {
   font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
   background-attachment: fixed;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  scroll-behavior: smooth;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-bg);
+  border-radius: 4px;
+  backdrop-filter: blur(10px);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--glass-hover);
 }
 
 /* 主容器样式 */
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 24px;
+  transition: var(--transition);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
 }
 
 /* 标题美化 */
@@ -32,24 +70,143 @@ h1, h2, h3 {
   background-clip: text;
   font-weight: 700;
   letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+h1::after, h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--accent-gradient);
+  border-radius: 2px;
+  opacity: 0.8;
 }
 
 /* 分组标题样式 */
 .group-title {
   position: relative;
-  padding: 15px 20px;
-  margin-bottom: 20px;
+  padding: 18px 24px;
+  margin-bottom: 24px;
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
+  border-radius: var(--border-radius);
   box-shadow: var(--shadow-soft);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.group-title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-gradient);
+  opacity: 0;
+  transition: var(--transition);
 }
 
 .group-title:hover {
+  background: var(--glass-hover);
   transform: translateY(-2px);
   box-shadow: var(--shadow-hover);
+}
+
+.group-title:hover::before {
+  opacity: 1;
+}
+
+/* 服务卡片样式优化 */
+.service-card, .bookmark-card {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-small);
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: var(--transition);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.service-card::before, .bookmark-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.service-card:hover::before, .bookmark-card:hover::before {
+  transform: translateX(100%);
+}
+
+.service-card:hover, .bookmark-card:hover {
+  background: var(--glass-hover);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.service-card:active, .bookmark-card:active {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: var(--shadow-active);
+}
+
+/* 图标样式优化 */
+.service-icon, .bookmark-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--border-radius-small);
+  margin-bottom: 12px;
+  transition: var(--transition);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.service-card:hover .service-icon,
+.bookmark-card:hover .bookmark-icon {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+}
+
+/* 状态指示器样式 */
+.status-indicator {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--success-gradient);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.offline {
+  background: var(--warning-gradient);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
 }
 
 .group-title::before {
@@ -88,10 +245,13 @@ h1, h2, h3 {
   z-index: -1;
 }
 
+/* 卡片悬停效果 - 优化动效规范 */
 .service-card:hover, .bookmark-card:hover {
-  transform: translateY(-8px) scale(1.02) !important;
+  transform: translateY(-4px) scale(1.01) !important;
   box-shadow: var(--shadow-hover) !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .service-card:hover::before, .bookmark-card:hover::before {
@@ -269,13 +429,16 @@ h1, h2, h3 {
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+    transform: scale(1);
   }
-  70% {
-    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  50% {
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+    transform: scale(1.05);
   }
   100% {
     box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    transform: scale(1);
   }
 }
 
@@ -304,47 +467,56 @@ h1, h2, h3 {
   contain: layout style paint;
 }
 
-/* 鼠标粒子效果增强样式 */
-body {
-  cursor: none;
+/* 优化的鼠标效果样式 */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
 }
 
-/* 确保粒子效果显示在正确层级 */
+/* 移动端恢复默认光标 */
+@media (hover: none) or (pointer: coarse) {
+  body {
+    cursor: auto !important;
+  }
+  
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+/* 粒子画布优化 */
 canvas[style*="z-index: 9999"] {
   z-index: 9999 !important;
   pointer-events: none !important;
   position: fixed !important;
+  will-change: auto;
 }
 
-/* 确保主要内容区域有正确的层级 */
-#__next {
+/* 主要内容区域层级 */
+#__next, main, .container {
   position: relative;
   z-index: 1;
 }
 
-/* 确保背景图片在最底层 */
-body::before {
-  z-index: -1;
-}
-
-/* 自定义光标 */
+/* 自定义光标样式 */
 .custom-cursor {
   position: fixed;
   width: 20px;
   height: 20px;
-  background: radial-gradient(circle, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.4) 70%, transparent 100%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
   mix-blend-mode: screen;
-  transition: transform 0.1s ease;
+  transition: transform 0.1s ease, opacity 0.2s ease;
+  will-change: transform, left, top;
 }
 
-/* 页面加载动画 */
+/* 页面加载动画 - 优化时长和缓动 */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -353,8 +525,8 @@ body::before {
 }
 
 .service-card, .bookmark-card {
-  animation: fadeInUp 0.6s ease forwards;
-  animation-delay: calc(var(--animation-order, 0) * 0.1s);
+  animation: fadeInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: calc(var(--animation-order, 0) * 0.05s);
 }
 
 /* 增强的悬停效果 */
@@ -362,18 +534,20 @@ body::before {
   background: rgba(255, 255, 255, 0.15) !important;
 }
 
-/* 渐变边框动画 */
+/* 渐变边框动画 - 优化频率和强度 */
 @keyframes borderGlow {
   0%, 100% {
     border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
   }
   50% {
-    border-color: rgba(102, 126, 234, 0.6);
+    border-color: rgba(102, 126, 234, 0.4);
+    box-shadow: 0 0 20px 0 rgba(102, 126, 234, 0.1);
   }
 }
 
 .service-card:hover, .bookmark-card:hover {
-  animation: borderGlow 2s ease-in-out infinite;
+  animation: borderGlow 3s ease-in-out infinite;
 }
 
 /* 背景粒子容器 - 移除 z-index 以避免与 canvas 冲突 */
@@ -395,21 +569,93 @@ body::before {
   transition: all 0.3s ease;
 }
 
-/* 响应式优化 */
+/* 性能优化 */
+.service-card, .bookmark-card, .widget {
+  contain: layout style paint;
+  will-change: auto;
+}
+
+/* 减少重绘的动画 */
+.service-card:hover, .bookmark-card:hover {
+  will-change: transform, box-shadow;
+}
+
+.service-card:not(:hover), .bookmark-card:not(:hover) {
+  will-change: auto;
+}
+
+/* 响应式优化 - 符合移动端 UX 规范 */
 @media (max-width: 768px) {
-  .custom-cursor {
-    display: none;
+  /* 移动端简化动画 */
+  .service-card, .bookmark-card {
+    animation-duration: 0.2s !important;
+    animation-delay: calc(var(--animation-order, 0) * 0.02s) !important;
   }
   
-  body {
-    cursor: auto;
+  .service-card:hover, .bookmark-card:hover {
+    transform: translateY(-2px) scale(1.005) !important;
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  
+  /* 移动端禁用视差效果 */
+  .service-card[style*="transform"], .bookmark-card[style*="transform"] {
+    transform: none !important;
+  }
+  
+  /* 移动端优化触摸反馈 */
+  .service-card:active, .bookmark-card:active {
+    transform: scale(0.98) !important;
+    transition: transform 0.1s ease !important;
+  }
+}
+
+/* 无障碍设计 - 减少动画影响 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
   
   .service-card, .bookmark-card {
     transform: none !important;
   }
   
-  .service-card:hover, .bookmark-card:hover {
-    transform: translateY(-4px) !important;
+  /* 保留基本的焦点指示 */
+  .service-card:focus, .bookmark-card:focus {
+    outline: 2px solid #667eea !important;
+    outline-offset: 2px !important;
   }
+}
+
+/* 添加缺失的动画关键帧 */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes glow-pulse {
+  0% {
+    opacity: 0.1;
+    filter: blur(15px);
+  }
+  100% {
+    opacity: 0.3;
+    filter: blur(10px);
+  }
+}
+
+/* 焦点管理优化 */
+.service-card:focus-visible, .bookmark-card:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+  transform: translateY(-2px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }

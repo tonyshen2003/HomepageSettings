@@ -18,19 +18,40 @@
         addAccessibilityFeatures();
         initMouseParticles();
         initCustomCursor();
+        addLoadingAnimations();
+        addThemeTransitions();
+        addStatusIndicators();
+        addTooltipSystem();
+        addLazyLoading();
     }
     
-    // 视差滚动效果
+    // 优化的视差滚动效果
     function addParallaxEffect() {
         let ticking = false;
         
         function updateParallax() {
             const scrolled = window.pageYOffset;
             const parallaxElements = document.querySelectorAll('.service-card, .bookmark-card');
+            const windowHeight = window.innerHeight;
             
             parallaxElements.forEach((element, index) => {
-                const speed = 0.5 + (index % 3) * 0.1;
-                const yPos = -(scrolled * speed);
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.top + scrolled;
+                const elementHeight = rect.height;
+                
+                // 只对可见元素应用视差效果
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    const speed = 0.02 + (index % 3) * 0.01;
+                    const yPos = (scrolled - elementTop) * speed;
+                    element.style.transform = `translateY(${yPos}px)`;
+                }
+            });
+            
+            // 背景视差效果
+            const backgroundElements = document.querySelectorAll('.background-parallax');
+            backgroundElements.forEach((element, index) => {
+                const speed = 0.5;
+                const yPos = scrolled * speed;
                 element.style.transform = `translateY(${yPos}px)`;
             });
             
@@ -44,7 +65,139 @@
             }
         }
         
+        // 使用 Intersection Observer 优化性能
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-viewport');
+                } else {
+                    entry.target.classList.remove('in-viewport');
+                }
+            });
+        });
+        
+        document.querySelectorAll('.service-card, .bookmark-card').forEach(el => {
+            observer.observe(el);
+        });
+        
         window.addEventListener('scroll', requestTick, { passive: true });
+    }
+    
+    // 加载动画
+    function addLoadingAnimations() {
+        // 页面加载动画
+        const cards = document.querySelectorAll('.service-card, .bookmark-card');
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+        
+        // 分组标题动画
+        const groupTitles = document.querySelectorAll('.group-title');
+        groupTitles.forEach((title, index) => {
+            title.style.opacity = '0';
+            title.style.transform = 'translateX(-30px)';
+            
+            setTimeout(() => {
+                title.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                title.style.opacity = '1';
+                title.style.transform = 'translateX(0)';
+            }, index * 200);
+        });
+    }
+    
+    // 主题切换动画
+    function addThemeTransitions() {
+        const themeToggle = document.querySelector('[data-theme-toggle]');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                document.body.style.transition = 'all 0.3s ease';
+                setTimeout(() => {
+                    document.body.style.transition = '';
+                }, 300);
+            });
+        }
+    }
+    
+    // 状态指示器
+    function addStatusIndicators() {
+        const services = document.querySelectorAll('.service-card');
+        services.forEach(service => {
+            const indicator = document.createElement('div');
+            indicator.className = 'status-indicator';
+            service.appendChild(indicator);
+            
+            // 模拟状态检查
+            setTimeout(() => {
+                const isOnline = Math.random() > 0.1; // 90% 在线率
+                if (!isOnline) {
+                    indicator.classList.add('offline');
+                }
+            }, Math.random() * 2000);
+        });
+    }
+    
+    // 工具提示系统
+    function addTooltipSystem() {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'custom-tooltip';
+        tooltip.style.cssText = `
+            position: fixed;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s;
+            backdrop-filter: blur(10px);
+        `;
+        document.body.appendChild(tooltip);
+        
+        document.addEventListener('mouseover', (e) => {
+            const target = e.target.closest('[data-tooltip]');
+            if (target) {
+                tooltip.textContent = target.dataset.tooltip;
+                tooltip.style.opacity = '1';
+            }
+        });
+        
+        document.addEventListener('mouseout', (e) => {
+            const target = e.target.closest('[data-tooltip]');
+            if (target) {
+                tooltip.style.opacity = '0';
+            }
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            tooltip.style.left = e.clientX + 10 + 'px';
+            tooltip.style.top = e.clientY - 30 + 'px';
+        });
+    }
+    
+    // 懒加载优化
+    function addLazyLoading() {
+        const images = document.querySelectorAll('img[data-src]');
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+        
+        images.forEach(img => imageObserver.observe(img));
     }
     
     // 平滑滚动
@@ -71,9 +224,10 @@
         const cards = document.querySelectorAll('.service-card, .bookmark-card');
         
         cards.forEach(card => {
-            // 鼠标进入效果
+            // 鼠标进入效果 - 优化动效规范
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
+                this.style.transform = 'translateY(-4px) scale(1.01)';
+                this.style.transition = 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
                 this.style.zIndex = '10';
                 
                 // 添加光晕效果
@@ -81,29 +235,36 @@
                 glow.className = 'card-glow';
                 glow.style.cssText = `
                     position: absolute;
-                    top: -10px;
-                    left: -10px;
-                    right: -10px;
-                    bottom: -10px;
+                    top: -8px;
+                    left: -8px;
+                    right: -8px;
+                    bottom: -8px;
                     background: linear-gradient(45deg, #667eea, #764ba2, #4facfe, #00f2fe);
-                    border-radius: 25px;
-                    opacity: 0.3;
-                    filter: blur(20px);
+                    border-radius: 20px;
+                    opacity: 0.2;
+                    filter: blur(15px);
                     z-index: -1;
-                    animation: glow-pulse 2s ease-in-out infinite alternate;
+                    animation: glow-pulse 3s ease-in-out infinite alternate;
+                    transition: opacity 0.25s ease;
                 `;
                 this.appendChild(glow);
             });
             
-            // 鼠标离开效果
+            // 鼠标离开效果 - 优化过渡
             card.addEventListener('mouseleave', function() {
                 this.style.transform = '';
+                this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 this.style.zIndex = '';
                 
-                // 移除光晕效果
+                // 渐隐移除光晕效果
                 const glow = this.querySelector('.card-glow');
                 if (glow) {
-                    glow.remove();
+                    glow.style.opacity = '0';
+                    setTimeout(() => {
+                        if (glow.parentNode) {
+                            glow.remove();
+                        }
+                    }, 250);
                 }
             });
             
@@ -121,10 +282,10 @@
                     height: ${size}px;
                     left: ${x}px;
                     top: ${y}px;
-                    background: rgba(255, 255, 255, 0.3);
+                    background: rgba(255, 255, 255, 0.2);
                     border-radius: 50%;
                     transform: scale(0);
-                    animation: ripple 0.6s linear;
+                    animation: ripple 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                     pointer-events: none;
                     z-index: 1;
                 `;
@@ -132,8 +293,10 @@
                 this.appendChild(ripple);
                 
                 setTimeout(() => {
-                    ripple.remove();
-                }, 600);
+                    if (ripple.parentNode) {
+                        ripple.remove();
+                    }
+                }, 400);
             });
         });
     }
@@ -161,8 +324,9 @@
                 const text = card.textContent.toLowerCase();
                 const isMatch = text.includes(searchTerm);
                 
-                card.style.opacity = isMatch || !searchTerm ? '1' : '0.3';
-                card.style.transform = isMatch || !searchTerm ? '' : 'scale(0.95)';
+                card.style.opacity = isMatch || !searchTerm ? '1' : '0.4';
+                card.style.transform = isMatch || !searchTerm ? '' : 'scale(0.98)';
+                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
             });
         }
         
@@ -323,171 +487,290 @@
         }
     }
     
-    // 鼠标粒子效果
+    // 优化的鼠标粒子效果
     function initMouseParticles() {
+        // 检查设备性能和移动端
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isLowPerformance = navigator.hardwareConcurrency < 4;
+        
+        // 移动端或低性能设备禁用粒子效果
+        if (isMobile || isLowPerformance) {
+            console.log('粒子效果已禁用：移动端或低性能设备');
+            return;
+        }
+        
         const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
         
         // 设置画布样式
-        canvas.style.position = 'fixed';
-        canvas.style.top = '0';
-        canvas.style.left = '0';
-        canvas.style.width = '100%';
-        canvas.style.height = '100%';
-        canvas.style.pointerEvents = 'none';
-        canvas.style.zIndex = '9999';
-        canvas.style.mixBlendMode = 'screen';
-        canvas.style.opacity = '0.8';
-        
-        // 调试信息
-        console.log('粒子 canvas 已创建，z-index:', canvas.style.zIndex);
+        canvas.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: screen;
+            opacity: 0.6;
+        `;
         
         document.body.appendChild(canvas);
         
-        // 调整画布大小
+        // 性能配置
+        const config = {
+            maxParticles: 25,
+            particleSpeed: 1,
+            particleLife: 60,
+            createRate: 3,
+            mouseMoveThrottle: 16 // 约60fps
+        };
+        
+        // 调整画布大小（防抖）
+        let resizeTimeout;
         function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                const dpr = window.devicePixelRatio || 1;
+                const rect = canvas.getBoundingClientRect();
+                
+                canvas.width = rect.width * dpr;
+                canvas.height = rect.height * dpr;
+                
+                ctx.scale(dpr, dpr);
+                canvas.style.width = rect.width + 'px';
+                canvas.style.height = rect.height + 'px';
+            }, 100);
         }
         
         resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('resize', resizeCanvas, { passive: true });
         
-        // 粒子数组
+        // 粒子池优化
         const particles = [];
-        const maxParticles = 50;
+        const particlePool = [];
         
-        // 鼠标位置
-        let mouse = { x: 0, y: 0 };
+        // 鼠标位置和状态
+        let mouse = { x: 0, y: 0, isMoving: false };
+        let lastMouseTime = 0;
         
-        // 粒子类
+        // 优化的粒子类
         class Particle {
-            constructor(x, y) {
+            constructor() {
+                this.reset(0, 0);
+            }
+            
+            reset(x, y) {
                 this.x = x;
                 this.y = y;
-                this.vx = (Math.random() - 0.5) * 2;
-                this.vy = (Math.random() - 0.5) * 2;
-                this.life = 1;
-                this.decay = Math.random() * 0.02 + 0.01;
-                this.size = Math.random() * 3 + 1;
-                this.color = `hsl(${Math.random() * 60 + 200}, 70%, 60%)`;
+                this.vx = (Math.random() - 0.5) * config.particleSpeed;
+                this.vy = (Math.random() - 0.5) * config.particleSpeed;
+                this.life = config.particleLife;
+                this.maxLife = config.particleLife;
+                this.size = Math.random() * 2 + 1;
+                this.hue = Math.random() * 60 + 200;
+                this.active = true;
             }
             
             update() {
+                if (!this.active) return;
+                
                 this.x += this.vx;
                 this.y += this.vy;
-                this.life -= this.decay;
-                this.vx *= 0.99;
-                this.vy *= 0.99;
+                this.life--;
+                this.vx *= 0.98;
+                this.vy *= 0.98;
+                
+                if (this.life <= 0) {
+                    this.active = false;
+                }
             }
             
             draw() {
-                ctx.save();
-                ctx.globalAlpha = this.life;
-                ctx.fillStyle = this.color;
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = this.color;
+                if (!this.active) return;
+                
+                const alpha = this.life / this.maxLife;
+                const size = this.size * alpha;
+                
+                ctx.globalAlpha = alpha * 0.8;
+                ctx.fillStyle = `hsl(${this.hue}, 70%, 60%)`;
+                
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.restore();
             }
         }
         
-        // 创建粒子
-        function createParticle(x, y) {
-            if (particles.length < maxParticles) {
-                particles.push(new Particle(x, y));
+        // 获取粒子（对象池）
+        function getParticle(x, y) {
+            let particle = particlePool.pop();
+            if (!particle) {
+                particle = new Particle();
+            }
+            particle.reset(x, y);
+            return particle;
+        }
+        
+        // 回收粒子
+        function recycleParticle(particle) {
+            particle.active = false;
+            particlePool.push(particle);
+        }
+        
+        // 创建粒子（限制频率）
+        let createCounter = 0;
+        function createParticles(x, y) {
+            if (particles.length >= config.maxParticles) return;
+            
+            createCounter++;
+            if (createCounter % config.createRate === 0) {
+                particles.push(getParticle(x, y));
             }
         }
         
-        // 动画循环
-        function animate() {
+        // 优化的动画循环
+        let animationId;
+        let lastFrameTime = 0;
+        const targetFPS = 60;
+        const frameInterval = 1000 / targetFPS;
+        
+        function animate(currentTime) {
+            if (currentTime - lastFrameTime < frameInterval) {
+                animationId = requestAnimationFrame(animate);
+                return;
+            }
+            
+            lastFrameTime = currentTime;
+            
+            // 清除画布
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // 更新和绘制粒子
+            // 批量更新和绘制粒子
             for (let i = particles.length - 1; i >= 0; i--) {
                 const particle = particles[i];
                 particle.update();
-                particle.draw();
                 
-                // 移除死亡的粒子
-                if (particle.life <= 0) {
+                if (particle.active) {
+                    particle.draw();
+                } else {
+                    // 回收死亡粒子
+                    recycleParticle(particle);
                     particles.splice(i, 1);
                 }
             }
             
-            requestAnimationFrame(animate);
+            animationId = requestAnimationFrame(animate);
         }
         
-        // 鼠标移动事件
-        document.addEventListener('mousemove', (e) => {
+        // 节流的鼠标移动事件
+        let mouseMoveTimeout;
+        function handleMouseMove(e) {
+            const now = Date.now();
+            if (now - lastMouseTime < config.mouseMoveThrottle) return;
+            
+            lastMouseTime = now;
             mouse.x = e.clientX;
             mouse.y = e.clientY;
+            mouse.isMoving = true;
             
-            // 创建粒子（降低频率以提高性能）
-            if (Math.random() < 0.3) {
-                createParticle(mouse.x, mouse.y);
+            createParticles(mouse.x, mouse.y);
+            
+            // 重置移动状态
+            clearTimeout(mouseMoveTimeout);
+            mouseMoveTimeout = setTimeout(() => {
+                mouse.isMoving = false;
+            }, 100);
+        }
+        // 绑定优化的鼠标事件
+        document.addEventListener('mousemove', handleMouseMove, { passive: true });
+        
+        // 页面可见性 API 优化
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                }
+            } else {
+                animate(performance.now());
             }
         });
         
-        // 开始动画
-         animate();
-     }
-     
-     // 自定义光标效果
-     function initCustomCursor() {
-         // 检查是否为移动设备
-         if (window.innerWidth <= 768) {
-             return;
-         }
-         
-         const cursor = document.createElement('div');
-         cursor.className = 'custom-cursor';
-         document.body.appendChild(cursor);
-         
-         let mouseX = 0;
-         let mouseY = 0;
-         let cursorX = 0;
-         let cursorY = 0;
-         
-         // 鼠标移动事件
-         document.addEventListener('mousemove', (e) => {
-             mouseX = e.clientX;
-             mouseY = e.clientY;
-         });
-         
-         // 平滑跟随动画
-         function animateCursor() {
-             const dx = mouseX - cursorX;
-             const dy = mouseY - cursorY;
-             
-             cursorX += dx * 0.1;
-             cursorY += dy * 0.1;
-             
-             cursor.style.left = cursorX - 10 + 'px';
-             cursor.style.top = cursorY - 10 + 'px';
-             
-             requestAnimationFrame(animateCursor);
-         }
-         
-         animateCursor();
-         
-         // 悬停效果
-         const interactiveElements = document.querySelectorAll('a, button, .service-card, .bookmark-card, [role="button"]');
-         
-         interactiveElements.forEach(element => {
-             element.addEventListener('mouseenter', () => {
-                 cursor.style.transform = 'scale(1.5)';
-                 cursor.style.background = 'radial-gradient(circle, rgba(240, 147, 251, 0.8) 0%, rgba(245, 87, 108, 0.4) 70%, transparent 100%)';
-             });
-             
-             element.addEventListener('mouseleave', () => {
-                 cursor.style.transform = 'scale(1)';
-                 cursor.style.background = 'radial-gradient(circle, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.4) 70%, transparent 100%)';
-             });
-         });
-     }
+        // 启动动画
+        animate(performance.now());
+        
+        // 清理函数
+        return () => {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+            document.removeEventListener('mousemove', handleMouseMove);
+            if (canvas.parentNode) {
+                canvas.parentNode.removeChild(canvas);
+            }
+        };
+    }
+    
+    // 优化的自定义光标
+    function initCustomCursor() {
+        // 移动端禁用自定义光标
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        if (isMobile) {
+            return;
+        }
+        
+        const cursor = document.createElement('div');
+        cursor.className = 'custom-cursor';
+        cursor.style.cssText = `
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.3) 70%, transparent 100%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: screen;
+            transition: transform 0.1s ease;
+            opacity: 0;
+        `;
+        
+        document.body.appendChild(cursor);
+        
+        // 节流的光标移动
+        let cursorMoveTimeout;
+        function updateCursor(e) {
+            cursor.style.left = (e.clientX - 10) + 'px';
+            cursor.style.top = (e.clientY - 10) + 'px';
+            cursor.style.opacity = '1';
+        }
+        
+        document.addEventListener('mousemove', updateCursor, { passive: true });
+        
+        // 悬停效果优化
+        const interactiveElements = '.service-card, .bookmark-card, button, a, [role="button"]';
+        
+        document.addEventListener('mouseenter', (e) => {
+            if (e.target.matches(interactiveElements)) {
+                cursor.style.transform = 'scale(1.5)';
+                cursor.style.background = 'radial-gradient(circle, rgba(79, 172, 254, 0.8) 0%, rgba(0, 242, 254, 0.4) 70%, transparent 100%)';
+            }
+        }, true);
+        
+        document.addEventListener('mouseleave', (e) => {
+            if (e.target.matches(interactiveElements)) {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.background = 'radial-gradient(circle, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.3) 70%, transparent 100%)';
+            }
+        }, true);
+        
+        // 鼠标离开页面时隐藏光标
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+        });
+        
+        document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '1';
+        });
+    }
      
      // 初始化主题切换
     addThemeTransition();

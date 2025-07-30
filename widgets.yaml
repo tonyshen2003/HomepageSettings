@@ -3,43 +3,68 @@
 # https://gethomepage.dev/configs/info-widgets/
 
 - resources:
-    label: 系统资源
+    label: 系统资源监控
     cpu: true
     memory: true
     disk: /
     cputemp: true
     uptime: true
     expanded: true
-    refresh: 1000
+    refresh: 3000 # 降低刷新频率，减少系统负载
+    units: metric
 
 - search:
-    provider: baidu
+    provider: ["baidu", "google", "bing"]
     target: _blank
-    placeholder: 搜索...
+    placeholder: 🔍 搜索网络内容...
+    showSearchSuggestions: true
 
 - openmeteo:
-    label: 苏州天气
-    latitude: 31.2222
-    longitude: 121.4581
+    label: 苏州天气预报
+    latitude: 31.2304
+    longitude: 120.6189
     timezone: Asia/Shanghai
     units: metric
-    cache: 5
+    cache: 10 # 增加缓存时间
     format:
       maximumFractionDigits: 1
+    expanded: false # 默认折叠以节省空间
 
 - datetime:
     text_size: xl
     format:
       dateStyle: full
-      timeStyle: short
+      timeStyle: medium
       hourCycle: h23
     locale: zh-CN
+    timezone: Asia/Shanghai
 
 - greeting:
     text_size: xl
-    text: 欢迎使用个人主页
+    text: "👋 欢迎回来，沈孙丰！"
+    expanded: true
 
 - logo:
     icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/homepage.png
     href: https://gethomepage.dev
     target: _blank
+
+# 新增小部件
+- unifi:
+    label: 网络状态
+    url: http://localhost:8080
+    username: admin
+    password: password
+    site: default
+    expanded: false
+
+- glances:
+    label: 系统详细监控
+    url: http://localhost:61208
+    metric: cpu
+    chart: true
+    expanded: false
+
+- bookmarks:
+    label: 快速访问
+    expanded: true
